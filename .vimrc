@@ -41,6 +41,8 @@ nnoremap <ESC><ESC> :nohlsearch<CR>
 "syntax enebale
 set background=dark
 " colorscheme desert
+" color schema
+colorscheme railscasts
 
 set list
 set listchars=tab:>\ ,trail:_,nbsp:%,extends:>,precedes:<
@@ -63,6 +65,12 @@ execute pathogen#infect()
 if $COLORTERM == 'gnome-terminal'
     set t_Co=256
     endif
+if !has('gui_running')
+  set t_Co=256
+  syntax enable
+  set background=dark
+  colorscheme base16-railscasts
+endif
 
 " turn on language specific syntax highlighting
 syntax on
@@ -71,7 +79,7 @@ syntax on
 let g:syntastic_check_on_open=0 "ファイルを開いたときはチェックしない
 let g:syntastic_check_on_save=1 "保存時にはチェック
 let g:syntastic_auto_loc_list=1 "エラーがあったら自動でロケーションリストを開く
-let g:syntastic_loc_list_height=6 "エラー表示ウィンドウの高さ
+let g:syntastic_loc_list_height=4 "エラー表示ウィンドウの高さ
 set statusline+=%#warningmsg# "エラーメッセージの書式
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
@@ -85,6 +93,13 @@ let g:syntastic_mode_map = {
 let g:syntastic_enable_signs=1
 let g:syntastic_error_symbol='✗'
 let g:syntastic_warning_symbol='⚠'
+
+
+" タブをスペースにする
+autocmd BufWritePre * :%s/\t/  /ge
+
+" 保存時にスペース削除
+autocmd BufWritePre * :%s/\s\+$//ge
 
 " neobundle
 if has('vim_starting')
@@ -104,9 +119,47 @@ if has('vim_starting')
 
 NeoBundle 'editorconfig-vim'
 NeoBundle 'scrooloose/nerdtree'
+NeoBundle 'jelera/vim-javascript-syntax'
 
-" タブをスペースにする
-autocmd BufWritePre * :%s/\t/  /ge
+"" complcache
+NeoBundle 'Shougo/neocomplcache'
+NeoBundle 'Shougo/neosnippet'
+NeoBundle 'Shougo/neosnippet-snippets'
+NeoBundle 'jpo/vim-railscasts-theme'
+NeoBundle 'jnurmine/Zenburn'
+NeoBundle '29decibel/codeschool-vim-theme'
+NeoBundle 'tomasr/molokai'
+NeoBundle 'sickill/vim-monokai'
+NeoBundle 'vim-scripts/AutoClose'
+NeoBundle 'Shougo/unite.vim'
+NeoBundle 'sgur/unite-qf'
+NeoBundle 'Shougo/vimfiler'
 
-" 保存時にスペース削除
-autocmd BufWritePre * :%s/\s\+$//ge
+NeoBundle 'Shougo/vimproc', {
+  \ 'build' : {
+  \  'mac' : 'make -f make_mac.mak',
+  \  'unix' : 'make -f make_unix.mak',
+  \  },
+  \ }
+
+" NeoComplCache
+let g:neocomplcache_enable_at_startup = 1 " Use neocomplcache.
+let g:neocomplcache_enable_smart_case = 1 " Use smartcase.
+let g:neocomplcache_enable_camel_case_completion = 1 " Use camel case completion.
+let g:neocomplcache_enable_underbar_completion = 1 " Use underbar completion.
+set completeopt=menuone " 補完ウィンドウの設定
+
+" tabで補完候補の選択を行う
+inoremap <expr><TAB> pumvisible() ? "\<Down>" : "\<TAB>"
+inoremap <expr><S-TAB> pumvisible() ? "\<Up>" : "\<S-TAB>"
+
+" NeoSnippet
+imap <C-k>     <Plug>(neosnippet_expand_or_jump)
+smap <C-k>     <Plug>(neosnippet_expand_or_jump)
+xmap <C-k>     <Plug>(neosnippet_expand_target)
+
+" For snippet_complete marker.
+if has('conceal')
+  set conceallevel=2 concealcursor=i
+endif
+
