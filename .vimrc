@@ -75,6 +75,8 @@ endif
 " turn on language specific syntax highlighting
 syntax on
 
+set clipboard=unnamed,autoselect " use os clipboard (only gui)
+
 " jshint
 let g:syntastic_check_on_open=0 "ファイルを開いたときはチェックしない
 let g:syntastic_check_on_save=1 "保存時にはチェック
@@ -120,6 +122,7 @@ if has('vim_starting')
 NeoBundle 'editorconfig-vim'
 NeoBundle 'scrooloose/nerdtree'
 NeoBundle 'jelera/vim-javascript-syntax'
+NeoBundle 'scrooloose/syntastic'
 
 "" complcache
 NeoBundle 'Shougo/neocomplcache'
@@ -134,6 +137,10 @@ NeoBundle 'vim-scripts/AutoClose'
 NeoBundle 'Shougo/unite.vim'
 NeoBundle 'sgur/unite-qf'
 NeoBundle 'Shougo/vimfiler'
+NeoBundle 'tpope/vim-surround'
+" NeoBundle "kien/ctrlp.vim"
+NeoBundle 'terryma/vim-multiple-cursors'
+NeoBundle 'LeafCage/yankround.vim'
 
 NeoBundle 'Shougo/vimproc', {
   \ 'build' : {
@@ -141,6 +148,16 @@ NeoBundle 'Shougo/vimproc', {
   \  'unix' : 'make -f make_unix.mak',
   \  },
   \ }
+
+" yankround
+let g:yankround_max_history = 30
+
+" multi coursor
+let g:multi_cursor_use_default_mapping=0
+let g:multi_cursor_next_key='<C-n>'
+let g:multi_cursor_prev_key='<C-p>'
+let g:multi_cursor_skip_key='<C-x>'
+let g:multi_cursor_quit_key='<Esc>'
 
 " NeoComplCache
 let g:neocomplcache_enable_at_startup = 1 " Use neocomplcache.
