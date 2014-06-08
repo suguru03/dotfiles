@@ -37,12 +37,12 @@ set grepprg=grep\ -nh
 " 検索結果のハイライトをEsc連打でクリアする
 nnoremap <ESC><ESC> :nohlsearch<CR>
 
-"" colorscheme
-"syntax enebale
+" colorscheme
+syntax enable
 set background=dark
-" colorscheme desert
+ colorscheme desert
 " color schema
-colorscheme railscasts
+" colorscheme railscasts
 
 set list
 set listchars=tab:>\ ,trail:_,nbsp:%,extends:>,precedes:<
@@ -73,7 +73,7 @@ if !has('gui_running')
 endif
 
 " turn on language specific syntax highlighting
-syntax on
+" syntax on
 
 set clipboard=unnamed,autoselect " use os clipboard (only gui)
 
@@ -179,4 +179,18 @@ xmap <C-k>     <Plug>(neosnippet_expand_target)
 if has('conceal')
   set conceallevel=2 concealcursor=i
 endif
+
+" NERDTree
+nmap <silent> <C-e>      :NERDTreeToggle<CR>
+vmap <silent> <C-e> <Esc>:NERDTreeToggle<CR>
+omap <silent> <C-e>      :NERDTreeToggle<CR>
+imap <silent> <C-e> <Esc>:NERDTreeToggle<CR>
+cmap <silent> <C-e> <C-u>:NERDTreeToggle<CR>
+autocmd vimenter * if !argc() | NERDTree | endif
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
+let g:NERDTreeIgnore=['\.clean$', '\.swp$', '\.bak$', '\~$']
+let g:NERDTreeShowHidden=1
+let g:NERDTreeMinimalUI=1
+let g:NERDTreeDirArrows=0
+let g:NERDTreeMouseMode=2
 
