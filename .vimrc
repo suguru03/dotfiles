@@ -195,3 +195,8 @@ let g:NERDTreeDirArrows=0
 let g:NERDTreeMouseMode=2
 let g:NERDTreeShowBookmarks = 1
 
+" moving each window like eamcs.
+nnoremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
+nnoremap <C-l> <C-w>l
+nnoremap <C-h> <C-w>h
