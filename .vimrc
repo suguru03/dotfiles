@@ -9,10 +9,11 @@ if has('vim_starting')
   exe "set rtp+=".globpath($GOPATH, "src/github.com/nsf/gocode/vim")
   " neobundle
   set runtimepath+=~/.vim/bundle/neobundle.vim/
-  call neobundle#rc(expand('~/.vim/bundle/'))
+  call neobundle#begin(expand('~/.vim/bundle/'))
+  NeoBundleFetch 'Shougo/neobundle.vim'
+  call neobundle#end()
 endif
 
-NeoBundleFetch 'Shougo/neobundle.vim'
 
 "--------------------
 " plugin
@@ -47,8 +48,9 @@ NeoBundle 'fatih/vim-go'
 NeoBundle 'rking/ag.vim'
 NeoBundle 'thinca/vim-quickrun'
 
-"
-NeoBundle 'w0ng/vim-hybrid'
+"NeoBundle 'w0ng/vim-hybrid'
+NeoBundle 'ingtk/vim-hybrid'
+
 NeoBundleLazy 'pangloss/vim-javascript', {
   \ 'autoload' : { 'filetypes' : [ 'javascript' ] }
   \ }
@@ -72,6 +74,7 @@ set backupdir=$HOME/vimbackup
 set clipboard=unnamed,autoselect " use os clipboard (only gui)
 set backspace=indent,eol,start
 set autochdir
+set wrapscan
 
 "--------------------
 " appearance
