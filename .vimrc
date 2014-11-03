@@ -18,12 +18,12 @@ NeoBundleFetch 'Shougo/neobundle.vim'
 " plugin
 "--------------------
 
-NeoBundle 'editorconfig-vim'
+"NeoBundle 'editorconfig-vim'
 NeoBundle 'scrooloose/nerdtree'
 NeoBundle 'jelera/vim-javascript-syntax'
 NeoBundle 'scrooloose/syntastic'
 
-"" complcache
+" complcache
 NeoBundle 'Shougo/neocomplcache'
 NeoBundle 'Shougo/neosnippet'
 NeoBundle 'Shougo/neosnippet-snippets'
@@ -34,14 +34,24 @@ NeoBundle '29decibel/codeschool-vim-theme'
 NeoBundle 'tomasr/molokai'
 NeoBundle 'sickill/vim-monokai'
 NeoBundle 'vim-scripts/AutoClose'
+
 NeoBundle 'Shougo/unite.vim'
 NeoBundle 'sgur/unite-qf'
+
 NeoBundle 'Shougo/vimfiler'
 NeoBundle 'tpope/vim-surround'
 NeoBundle 'terryma/vim-multiple-cursors'
 NeoBundle 'LeafCage/yankround.vim'
 NeoBundle 'mattn/sonictemplate-vim'
 NeoBundle 'fatih/vim-go'
+NeoBundle 'rking/ag.vim'
+NeoBundle 'thinca/vim-quickrun'
+
+"
+NeoBundle 'w0ng/vim-hybrid'
+NeoBundleLazy 'pangloss/vim-javascript', {
+  \ 'autoload' : { 'filetypes' : [ 'javascript' ] }
+  \ }
 
 NeoBundle 'Shougo/vimproc', {
   \ 'build' : {
@@ -61,6 +71,7 @@ set directory=$HOME/vimbackup
 set backupdir=$HOME/vimbackup
 set clipboard=unnamed,autoselect " use os clipboard (only gui)
 set backspace=indent,eol,start
+set autochdir
 
 "--------------------
 " appearance
@@ -144,6 +155,7 @@ if !has('gui_running')
   colorscheme base16-railscasts
   " colorscheme desert
   " colorscheme railscasts
+  " colorscheme hybrid
 end
 
 "--------------------
@@ -192,6 +204,16 @@ endif
 
 " yankround
 let g:yankround_max_history=30
+nmap p <Plug>(yankround-p)
+nmap P <Plug>(yankround-P)
+nmap gp <Plug>(yankround-gp)
+nmap gP <Plug>(yankround-gP)
+nmap <C-p> <Plug>(yankround-prev)
+nmap <C-n> <Plug>(yankround-next)
+
+" if yankround is not active, ctrlp is available
+nnoremap <silent><SID>(ctrlp) :<C-u>CtrlP<CR>
+nmap <expr><C-p> yankround#is_active() ? "\<Plug>(yankround-prev)" : "<SID>(ctrlp)""
 
 " jshint
 let g:syntastic_check_on_open=0 "ファイルを開いたときはチェックしない
@@ -235,6 +257,19 @@ let g:NERDTreeDirArrows=0
 let g:NERDTreeMouseMode=2
 let g:NERDTreeShowBookmarks=1
 
-" pathogen
-execute pathogen#infect()
+"" pathogen
+"execute pathogen#infect()
+"
+" VimFiler
+map <silent> ,vf :VimFiler<CR>
+nnoremap <silent> ,e :<C-u>Unite file_rec/async:!<CR>
+
+" unite
+nnoremap <silent> ,ub :<C-u>Unite buffer<CR>
+nnoremap <silent> ,uf :<C-u>UniteWithBufferDir -buffer-name=files file<CR>
+nnoremap <silent> ,ut :<C-u>Unite tab<CR>
+nnoremap <silent> ,uq :<C-u>Unite qf<CR>
+nnoremap <silent> ,ul :<C-u>Unite locate<CR>"
+
+call unite#custom#default_action('directory' , 'vimfiler')
 
