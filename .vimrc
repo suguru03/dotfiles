@@ -73,7 +73,7 @@ set directory=$HOME/vimbackup
 set backupdir=$HOME/vimbackup
 set clipboard=unnamed,autoselect " use os clipboard (only gui)
 set backspace=indent,eol,start
-set autochdir
+" set autochdir
 set wrapscan
 
 "--------------------
@@ -90,7 +90,7 @@ set cursorline
 " indent
 "--------------------
 
-set autoindent
+" set autoindent
 set smartindent
 set expandtab
 set smarttab
@@ -103,6 +103,7 @@ autocmd BufWritePre * :%s/\t/  /ge
 
 " 保存時にスペース削除
 autocmd BufWritePre * :%s/\s\+$//ge
+autocmd BufWritePre * :%s/　\+$//ge
 
 if has("autocmd")
     au FileType html set ts=2 sw=2 sts=2 expandtab
@@ -133,6 +134,15 @@ function! s:Jq(...)
     endif
     execute "%! jq \"" . l:arg . "\""
 endfunction
+
+" command! -nargs=? Trim call s:Trim()
+" function! s:Trim()
+"     let cursor = getpos(".")
+"     %s/\s\+$//ge
+"     %s/　\+$//ge
+"     call setpos(".", cursor)
+"     unlet cursor
+" endfunction
 
 "--------------------
 " grep
