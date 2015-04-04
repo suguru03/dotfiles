@@ -19,8 +19,9 @@ endif
 " plugin
 "--------------------
 
-"NeoBundle 'editorconfig-vim'
-NeoBundle 'scrooloose/nerdtree'
+" NeoBundle 'editorconfig-vim'
+" NeoBundle 'scrooloose/nerdtree'
+NeoBundle 'ingtk/nerdtree'
 NeoBundle 'jelera/vim-javascript-syntax'
 NeoBundle 'scrooloose/syntastic'
 
@@ -38,6 +39,7 @@ NeoBundle 'vim-scripts/AutoClose'
 
 NeoBundle 'Shougo/unite.vim'
 NeoBundle 'sgur/unite-qf'
+NeoBundle 'rhysd/clever-f.vim'
 
 NeoBundle 'Shougo/vimfiler'
 NeoBundle 'tpope/vim-surround'
@@ -48,7 +50,7 @@ NeoBundle 'fatih/vim-go'
 NeoBundle 'rking/ag.vim'
 NeoBundle 'thinca/vim-quickrun'
 
-"NeoBundle 'w0ng/vim-hybrid'
+" NeoBundle 'w0ng/vim-hybrid'
 NeoBundle 'ingtk/vim-hybrid'
 
 NeoBundleLazy 'pangloss/vim-javascript', {
@@ -92,7 +94,7 @@ set cursorline
 
 " set autoindent
 set smartindent
-set expandtab
+" set expandtab
 set smarttab
 set tabstop=4
 set softtabstop=4
@@ -236,12 +238,15 @@ let g:syntastic_loc_list_height=4 "エラー表示ウィンドウの高さ
 set statusline+=%#warningmsg# "エラーメッセージの書式
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
-" let g:syntastic_javascript_checker = ['jshint'] "jshintを使う
+" let g:syntastic_javascript_checkers = ['jscs', 'jshint'] "jshintを使う
+let g:syntastic_javascript_checkers = ['jshint'] "jshintを使う
 let g:syntastic_mode_map = {
   \ 'mode': 'active',
   \ 'active_filetypes': ['ruby', 'javascript','json'],
   \ 'passive_filetypes': []
   \ }
+
+" autocmd FileType javascript nnoremap <buffer> <Leader>f :%!jscs -x<CR>
 
 "エラー表示マークを変更
 let g:syntastic_enable_signs=1
