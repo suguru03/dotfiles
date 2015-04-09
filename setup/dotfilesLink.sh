@@ -1,3 +1,3 @@
 #! /bin/sh
-ln -s ~/dotfiles/.vimrc ~/.vimrc
-ln -s ~/dotfiles/.vim ~/.vim
+ln -sf ~/dotfiles/_vimrc ~/.vimrc
+ln -sf ~/dotfiles/_vim ~/.vim
