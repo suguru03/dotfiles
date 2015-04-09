@@ -1,4 +1,4 @@
-.vim/bundle/*
-.vim/editorconfig-vim/*
-.vim/.netrwhist
-
+_vim/bundle/*
+_vim/editorconfig-vim/*
+_vim/.netrwhist
+_vim/_vim
