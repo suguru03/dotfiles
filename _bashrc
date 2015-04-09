@@ -1,0 +1,10 @@
+export JAVA_HOME=`/usr/libexec/java_home`
+export EDITOR=/Applications/MacVim-snapshot-71/MacVim.app/Contents/MacOS/Vim
+alias vi='env LANG=ja_JP.UTF-8 /Applications/MacVim-snapshot-71/MacVim.app/Contents/MacOS/Vim "$@"'
+alias vim='env LANG=ja_JP.UTF-8 /Applications/MacVim-snapshot-71/MacVim.app/Contents/MacOS/Vim "$@"'
+
+# go config
+export GOPATH=$HOME/go
+export GOROOT=/usr/local/opt/go/libexec
+export PATH=$GOPATH/bin:$GOROOT/bin:$PATH
+

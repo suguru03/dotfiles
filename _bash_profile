@@ -1,0 +1,54 @@
+if [ -f ~/.profile ]; then
+  source ~/.profile
+fi
+
+if [ -f ~/.bashrc ]; then
+  source ~/.bashrc
+fi
+
+if [[ -f ~/.nvm/nvm.sh ]]; then
+  source ~/.nvm/nvm.sh
+  nvm use "v0.10.26"
+  if which nvm >/dev/null 2>&1 ;then
+    _nodejs_use_version="v0.10.26"
+    if nvm ls | grep -F -e "${_nodejs_use_version}" >/dev/null 2>&1 ;then
+      nvm use "${_nodejs_use_version}" >/dev/null
+      export NODE_PATH=${NVM_PATH}_modules${NODE_PATH:+:}${NODE_PATH}
+    fi
+    unset _nodejs_use_version
+  fi
+fi
+# if [[ -f ~/.nvm/http://nvm.sh ]]; then
+#   source ~/.nvm/http://nvm.sh
+#
+#   if which nvm >/dev/null 2>&1 ;then
+#     _nodejs_use_version="v0.10.26"
+#     if nvm ls | grep -F -e "${_nodejs_use_version}" >/dev/null 2>&1 ;then
+#       nvm use "${_nodejs_use_version}" >/dev/null
+#       export NODE_PATH=${NVM_PATH}_modules${NODE_PATH:+:}${NODE_PATH}
+#     fi
+#     unset _nodejs_use_version
+#   fi
+# fi
+
+export CLASSPATH=~/Documents/mysql-connector-java-5.1.25/mysql-connector-java-5.1.25.jar
+
+
+
+##
+# Your previous ~/.bash_profile file was backed up as ~/.bash_profile.macports-saved_2013-12-04_at_14:42:28
+##
+
+# MacPorts Installer addition on 2013-12-04_at_14:42:28: adding an appropriate PATH variable for use with MacPorts.
+# export PATH=/opt/local/bin:/opt/local/sbin:$PATH
+export PATH=/usr/local/bin:$PATH
+# Finished adapting your PATH environment variable for use with MacPorts.
+
+[ -s "$HOME/.nvm/nvm.sh" ] && . "$HOME/.nvm/nvm.sh" # This loads nvm
+PREFIX=$HOME make install
+
+# The next line updates PATH for the Google Cloud SDK.
+source '~/google-cloud-sdk/path.bash.inc'
+
+# The next line enables bash completion for gcloud.
+source '~/google-cloud-sdk/completion.bash.inc'
