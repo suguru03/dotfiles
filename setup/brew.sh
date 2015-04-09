@@ -10,6 +10,7 @@ brew install subversion
 
 brew install vim
 
+brew install ag
 brew install git
 brew install go
 brew install jq
