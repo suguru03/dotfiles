@@ -44,11 +44,11 @@ export CLASSPATH=~/Documents/mysql-connector-java-5.1.25/mysql-connector-java-5.
 export PATH=/usr/local/bin:$PATH
 # Finished adapting your PATH environment variable for use with MacPorts.
 
-[ -s "$HOME/.nvm/nvm.sh" ] && . "$HOME/.nvm/nvm.sh" # This loads nvm
-PREFIX=$HOME make install
+# [ -s "$HOME/.nvm/nvm.sh" ] && . "$HOME/.nvm/nvm.sh" # This loads nvm
+# PREFIX=$HOME make install
 
 # The next line updates PATH for the Google Cloud SDK.
-source '~/google-cloud-sdk/path.bash.inc'
+# source '~/google-cloud-sdk/path.bash.inc'
 
 # The next line enables bash completion for gcloud.
-source '~/google-cloud-sdk/completion.bash.inc'
+# source '~/google-cloud-sdk/completion.bash.inc'
