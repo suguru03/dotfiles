@@ -1,4 +1,6 @@
 set nocompatible
+set encoding=utf-8
+set fileencodings=iso-2022-jp,euc-jp,sjis,utf-8
 filetype off
 
 if has('vim_starting')
@@ -10,61 +12,63 @@ if has('vim_starting')
   " neobundle
   set runtimepath+=~/.vim/bundle/neobundle.vim/
   call neobundle#begin(expand('~/.vim/bundle/'))
-  NeoBundleFetch 'Shougo/neobundle.vim'
+    NeoBundleFetch 'Shougo/neobundle.vim'
+
+  "--------------------
+  " plugin
+  "--------------------
+
+  " NeoBundle 'editorconfig-vim'
+  " NeoBundle 'scrooloose/nerdtree'
+  NeoBundle 'ingtk/nerdtree'
+  NeoBundle 'jelera/vim-javascript-syntax'
+  NeoBundle 'scrooloose/syntastic'
+
+  NeoBundle 'chrishunt/color-schemes'
+
+  " complcache
+  NeoBundle 'Shougo/neocomplcache'
+  NeoBundle 'Shougo/neosnippet'
+  NeoBundle 'Shougo/neosnippet-snippets'
+
+  NeoBundle 'jpo/vim-railscasts-theme'
+  NeoBundle 'jnurmine/Zenburn'
+  NeoBundle '29decibel/codeschool-vim-theme'
+  NeoBundle 'tomasr/molokai'
+  NeoBundle 'sickill/vim-monokai'
+  NeoBundle 'vim-scripts/AutoClose'
+
+  NeoBundle 'Shougo/unite.vim'
+  NeoBundle 'sgur/unite-qf'
+  NeoBundle 'rhysd/clever-f.vim'
+
+  NeoBundle 'Shougo/vimfiler'
+  NeoBundle 'tpope/vim-surround'
+  NeoBundle 'terryma/vim-multiple-cursors'
+  NeoBundle 'LeafCage/yankround.vim'
+  NeoBundle 'mattn/sonictemplate-vim'
+  NeoBundle 'fatih/vim-go'
+  NeoBundle 'rking/ag.vim'
+  NeoBundle 'thinca/vim-quickrun'
+
+  " NeoBundle 'w0ng/vim-hybrid'
+  NeoBundle 'ingtk/vim-hybrid'
+
+  NeoBundleLazy 'pangloss/vim-javascript', {
+    \ 'autoload' : { 'filetypes' : [ 'javascript' ] }
+    \ }
+
+  NeoBundle 'Shougo/vimproc', {
+    \ 'build' : {
+    \  'mac' : 'make -f make_mac.mak',
+    \  'unix' : 'make -f make_unix.mak',
+    \  },
+    \ }
+
+  NeoBundleCheck
   call neobundle#end()
 endif
 
-
-"--------------------
-" plugin
-"--------------------
-
-" NeoBundle 'editorconfig-vim'
-" NeoBundle 'scrooloose/nerdtree'
-NeoBundle 'ingtk/nerdtree'
-NeoBundle 'jelera/vim-javascript-syntax'
-NeoBundle 'scrooloose/syntastic'
-
-" complcache
-NeoBundle 'Shougo/neocomplcache'
-NeoBundle 'Shougo/neosnippet'
-NeoBundle 'Shougo/neosnippet-snippets'
-
-NeoBundle 'jpo/vim-railscasts-theme'
-NeoBundle 'jnurmine/Zenburn'
-NeoBundle '29decibel/codeschool-vim-theme'
-NeoBundle 'tomasr/molokai'
-NeoBundle 'sickill/vim-monokai'
-NeoBundle 'vim-scripts/AutoClose'
-
-NeoBundle 'Shougo/unite.vim'
-NeoBundle 'sgur/unite-qf'
-NeoBundle 'rhysd/clever-f.vim'
-
-NeoBundle 'Shougo/vimfiler'
-NeoBundle 'tpope/vim-surround'
-NeoBundle 'terryma/vim-multiple-cursors'
-NeoBundle 'LeafCage/yankround.vim'
-NeoBundle 'mattn/sonictemplate-vim'
-NeoBundle 'fatih/vim-go'
-NeoBundle 'rking/ag.vim'
-NeoBundle 'thinca/vim-quickrun'
-
-" NeoBundle 'w0ng/vim-hybrid'
-NeoBundle 'ingtk/vim-hybrid'
-
-NeoBundleLazy 'pangloss/vim-javascript', {
-  \ 'autoload' : { 'filetypes' : [ 'javascript' ] }
-  \ }
-
-NeoBundle 'Shougo/vimproc', {
-  \ 'build' : {
-  \  'mac' : 'make -f make_mac.mak',
-  \  'unix' : 'make -f make_unix.mak',
-  \  },
-  \ }
-
-NeoBundleCheck
 filetype plugin on
 
 "--------------------
@@ -290,4 +294,3 @@ nnoremap <silent> ,uq :<C-u>Unite qf<CR>
 nnoremap <silent> ,ul :<C-u>Unite locate<CR>"
 
 call unite#custom#default_action('directory' , 'vimfiler')
-
