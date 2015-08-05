@@ -2,3 +2,5 @@ _vim/bundle/*
 _vim/editorconfig-vim/*
 _vim/.netrwhist
 _vim/_vim
+.vim
+_npmrc
