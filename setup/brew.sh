@@ -15,10 +15,15 @@ brew install git
 brew install go
 brew install jq
 brew install nvm
+brew install npm
 brew install rbenv
 brew install tig
 brew install tmux
 brew install zsh
+
+brew install caskroom/cask/brew-cask
+brew cask install virtualbox
+brew cask install vagrant
 
 # Remove outdated versions
 brew cleanup
