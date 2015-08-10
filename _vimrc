@@ -1,6 +1,5 @@
 set nocompatible
 set encoding=utf-8
-set fileencodings=iso-2022-jp,euc-jp,sjis,utf-8
 filetype off
 
 if has('vim_starting')
