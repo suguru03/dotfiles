@@ -242,7 +242,8 @@ set statusline+=%#warningmsg# "エラーメッセージの書式
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
 " let g:syntastic_javascript_checkers = ['jscs', 'jshint'] "jshintを使う
-let g:syntastic_javascript_checkers = ['jshint'] "jshintを使う
+" let g:syntastic_javascript_checkers = ['jshint']
+let g:syntastic_javascript_checkers = ['eslint', 'jshint']
 let g:syntastic_mode_map = {
   \ 'mode': 'active',
   \ 'active_filetypes': ['ruby', 'javascript','json'],
