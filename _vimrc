@@ -104,7 +104,7 @@ set softtabstop=4
 set shiftwidth=4
 
 " タブをスペースにする
-autocmd BufWritePre * :%s/\t/  /ge
+" autocmd BufWritePre * :%s/\t/  /ge
 
 " 保存時にスペース削除
 autocmd BufWritePre * :%s/\s\+$//ge
@@ -115,6 +115,7 @@ if has("autocmd")
     au FileType yaml set ts=2 sw=2 sts=2 expandtab
     au FileType coffee set ts=2 sw=2 sts=2 expandtab
     au FileType javascript set ts=2 sw=2 sts=2 expandtab
+    au FileType json nnoremap <buffer> B :!%python -m json.tool<cr>
 
     au BufRead,BufNewFile *.ejs set filetype=jst ts=2 sw=2 sts=2 expandtab
     au BufRead,BufNewFile *.ejs.* set filetype=jst ts=2 sw=2 sts=2 expandtab
@@ -241,12 +242,11 @@ let g:syntastic_loc_list_height=4 "エラー表示ウィンドウの高さ
 set statusline+=%#warningmsg# "エラーメッセージの書式
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
-" let g:syntastic_javascript_checkers = ['jscs', 'jshint'] "jshintを使う
-" let g:syntastic_javascript_checkers = ['jshint']
-let g:syntastic_javascript_checkers = ['eslint', 'jshint']
+let g:syntastic_javascript_checkers = ['jshint', 'eslint']
+let g:syntastic_go_checkers = ['go', 'golint', 'errcheck']
 let g:syntastic_mode_map = {
   \ 'mode': 'active',
-  \ 'active_filetypes': ['ruby', 'javascript','json'],
+  \ 'active_filetypes': ['ruby', 'javascript','json', 'go'],
   \ 'passive_filetypes': []
   \ }
 
@@ -294,3 +294,12 @@ nnoremap <silent> ,uq :<C-u>Unite qf<CR>
 nnoremap <silent> ,ul :<C-u>Unite locate<CR>"
 
 call unite#custom#default_action('directory' , 'vimfiler')
+
+" vim-go
+" let g:go_fmt_command = "goimports"
+" let g:go_highlight_functions = 1
+" let g:go_highlight_methods = 1
+" let g:go_highlight_structs = 1
+" let g:go_highlight_operators = 1
+" let g:go_term_enabled = 1
+" let g:go_highlight_build_constraints = 1
