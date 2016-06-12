@@ -76,7 +76,25 @@ filetype plugin on
 
 set directory=$HOME/vimbackup
 set backupdir=$HOME/vimbackup
-set clipboard=unnamed,autoselect " use os clipboard (only gui)
+if has('nvim')
+  set clipboard+=unnamedplus
+  function! ClipboardYank()
+    call system('pbcopy', @@)
+  endfunction
+  function! ClipboardPaste()
+    let @@ = system('pbpaste')
+  endfunction
+
+  vnoremap <silent> y y:call ClipboardYank()<cr>
+  vnoremap <silent> d d:call ClipboardYank()<cr>
+  nnoremap <silent> p :call ClipboardPaste()<cr>
+  onoremap <silent> y y:call ClipboardYank()<cr>
+  onoremap <silent> d d:call ClipboardYank()<cr>
+
+  let g:python3_host_prog = expand('$HOME') . '/.pyenv/shims/python3'
+else
+  set clipboard=unnamed,autoselect " use os clipboard
+endif
 set backspace=indent,eol,start
 " set autochdir
 set wrapscan
@@ -103,10 +121,10 @@ set tabstop=4
 set softtabstop=4
 set shiftwidth=4
 
-" タブをスペースにする
+" Convert tab to space
 " autocmd BufWritePre * :%s/\t/  /ge
 
-" 保存時にスペース削除
+" remove space when file is saved
 autocmd BufWritePre * :%s/\s\+$//ge
 autocmd BufWritePre * :%s/　\+$//ge
 
