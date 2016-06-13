@@ -1,7 +1,5 @@
 #! /bin/zh
 
-nvm install v0.10
-nvm install v0.12
-nvm install iojs
+nvm install v6
 
 npm install -g eslint jshint gulp nodemon mocha bower
