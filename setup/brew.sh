@@ -15,6 +15,7 @@ brew install vim
 brew install ag
 brew install git
 brew install go
+brew install go-app-engine-64
 brew install jq
 brew install nvm
 brew install npm
