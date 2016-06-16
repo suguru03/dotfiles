@@ -2,6 +2,7 @@
 
 ./brew.sh
 ./go.sh
+./vim.sh
 ./dotfiles.sh
 ./node.sh
 
