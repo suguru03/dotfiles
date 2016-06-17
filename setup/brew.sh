@@ -24,6 +24,7 @@ brew install tig
 brew install tmux
 brew install zsh
 brew install wget
+brew install mysql
 brew install python
 brew linkapps python
 
