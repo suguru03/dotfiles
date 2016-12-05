@@ -16,6 +16,8 @@ brew install ag
 brew install git
 brew install go
 brew install go-app-engine-64
+brew install android-sdk
+brew install glide
 brew install jq
 brew install nvm
 brew install npm
@@ -28,9 +30,14 @@ brew install mysql
 brew install python
 brew linkapps python
 
+# for react native
+brew install watchman
+
 brew install caskroom/cask/brew-cask
 brew cask install virtualbox
 brew cask install vagrant
+
+brew install neovim/neovim/neovim
 
 # zsh
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"

@@ -22,6 +22,7 @@ if has('vim_starting')
   NeoBundle 'ingtk/nerdtree'
   NeoBundle 'jelera/vim-javascript-syntax'
   NeoBundle 'scrooloose/syntastic'
+  NeoBundle 'GutenYe/json5.vim'
 
   NeoBundle 'chrishunt/color-schemes'
 

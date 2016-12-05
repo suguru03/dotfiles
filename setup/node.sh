@@ -1,5 +1,13 @@
-#! /bin/zh
+#! /bin/sh
 
 nvm install v6
 
-npm install -g eslint jshint gulp nodemon mocha bower
+npm install -g eslint \
+               eslint-plugin-react \
+               babel-eslint \
+               jshint \
+               gulp \
+               bower \
+               mocha \
+               react-native-cli \
+               pm2

@@ -6,31 +6,6 @@ if [ -f ~/.bashrc ]; then
   source ~/.bashrc
 fi
 
-if [[ -f ~/.nvm/nvm.sh ]]; then
-  source ~/.nvm/nvm.sh
-  nvm use "v0.10.26"
-  if which nvm >/dev/null 2>&1 ;then
-    _nodejs_use_version="v0.10.26"
-    if nvm ls | grep -F -e "${_nodejs_use_version}" >/dev/null 2>&1 ;then
-      nvm use "${_nodejs_use_version}" >/dev/null
-      export NODE_PATH=${NVM_PATH}_modules${NODE_PATH:+:}${NODE_PATH}
-    fi
-    unset _nodejs_use_version
-  fi
-fi
-# if [[ -f ~/.nvm/http://nvm.sh ]]; then
-#   source ~/.nvm/http://nvm.sh
-#
-#   if which nvm >/dev/null 2>&1 ;then
-#     _nodejs_use_version="v0.10.26"
-#     if nvm ls | grep -F -e "${_nodejs_use_version}" >/dev/null 2>&1 ;then
-#       nvm use "${_nodejs_use_version}" >/dev/null
-#       export NODE_PATH=${NVM_PATH}_modules${NODE_PATH:+:}${NODE_PATH}
-#     fi
-#     unset _nodejs_use_version
-#   fi
-# fi
-
 export CLASSPATH=~/Documents/mysql-connector-java-5.1.25/mysql-connector-java-5.1.25.jar
 
 
