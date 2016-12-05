@@ -312,6 +312,10 @@ nnoremap <silent> ,ut :<C-u>Unite tab<CR>
 nnoremap <silent> ,uq :<C-u>Unite qf<CR>
 nnoremap <silent> ,ul :<C-u>Unite locate<CR>"
 
+" colon, semicolon
+nnoremap ; :
+nnoremap : ;
+
 call unite#custom#default_action('directory' , 'vimfiler')
 
 " vim-go
