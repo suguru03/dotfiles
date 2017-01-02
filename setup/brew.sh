@@ -30,7 +30,10 @@ brew install mysql
 brew install python
 brew linkapps python
 
-# for react native
+# docker
+brew install docker-machine-driver-xhyve
+
+# react native
 brew install watchman
 
 brew install caskroom/cask/brew-cask
