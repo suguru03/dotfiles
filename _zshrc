@@ -91,16 +91,6 @@ export PATH=$ANT_ROOT:$PATH
 # export GOROOT=/usr/local/opt/go/libexec
 # export PATH=$GOPATH/bin:$GOROOT/bin:$PATH
 
-# # gobrew
-GO_VERSION=1.6.2
-export PATH=$HOME/.gobrew/bin:$PATH
-eval "$(gobrew init -)"
-gobrew use $GO_VERSION
-export GOROOT=$HOME/.gobrew/version/$GO_VERSION
-ECHO "Now using golang $GO_VERSION"
-ECHO "GOPATH:$GOPATH"
-# gobrew workspace set # unset
-
 export PATH=$HOME/.rbenv/bin:$PATH
 eval "$(rbenv init -)"
 

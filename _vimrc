@@ -19,7 +19,9 @@ else
   Plug 'scrooloose/syntastic'
 endif
 " for go
+Plug 'nsf/gocode', { 'rtp': 'vim', 'do': '~/.vim/plugged/gocode/vim/symlink.sh' }
 Plug 'fatih/vim-go', { 'for': 'go' }
+Plug 'vim-jp/vim-go-extra', { 'for': 'go' }
 Plug 'buoto/gotests-vim', { 'for': 'go', 'do': 'go get -u github.com/cweill/gotests' }
 " for js, json
 Plug 'othree/yajs.vim', { 'for': 'javascript' }
@@ -179,7 +181,7 @@ set shiftwidth=4 " タブを挿入するときの幅
 "set expandtab " convert harf space
 
 "" 基本editorconfigに寄せる（vscodeとの互換のため）
-"if has("autocmd")
+if has("autocmd")
 "
 "  au FileType html set ts=2 sw=2 expandtab
 "  au FileType php set ts=4 sw=4 noexpandtab
@@ -187,7 +189,7 @@ set shiftwidth=4 " タブを挿入するときの幅
 "  au FileType ruby set ts=2 sw=2 expandtab
 "  au FileType slim set ts=2 sw=2 expandtab
 "  au FileType coffee set ts=2 sw=2 expandtab
-"  au FileType javascript set ts=2 sw=2 expandtab
+  au FileType javascript set ts=2 sw=2 expandtab
 "  au FileType yaml set ts=2 sw=2 expandtab
 "  au FileType go set ts=2 sw=2
 "  au FileType terraform set ts=2 sw=2 expandtab
@@ -199,7 +201,7 @@ set shiftwidth=4 " タブを挿入するときの幅
 "  au BufRead,BufNewFile *.go setf go
 "  au BufRead,BufNewFile,BufEnter *.rs setf rust
 "
-"endif
+endif
 
 "---------------------------
 " editing
@@ -388,11 +390,17 @@ if has('nvim')
   autocmd! BufWritePost * Neomake
 else
   " syntastic
+  let g:syntastic_check_on_open=0 "ファイルを開いたときはチェックしない
+  let g:syntastic_check_on_save=1 "保存時にはチェック
+  let g:syntastic_auto_loc_list=1 "エラーがあったら自動でロケーションリストを開く
+  let g:syntastic_loc_list_height=4 "エラー表示ウィンドウの高さ
+  set statusline+=%#warningmsg# "エラーメッセージの書式
+  set statusline+=%{SyntasticStatuslineFlag()}
+  set statusline+=%*
+  let g:syntastic_javascript_checkers = ['eslint']
   let g:syntastic_mode_map = { 'mode': 'active',
     \ 'active_filetypes': ['javascript'],
     \ 'passive_filetypes': ['html', 'python', 'go'] }
-  "let g:syntastic_auto_loc_list = 0
-  let g:syntastic_auto_loc_list = 2
   let g:syntastic_javascript_checkers = ['standard']
   let g:syntastic_python_checkers = ['pylint']
   let g:syntastic_go_checkers = ['go', 'govet', 'errcheck']
@@ -403,6 +411,13 @@ let NERDSpaceDelims = 1
 let g:NERDTreeShowBookmarks = 1
 nmap <C-C> <Plug>NERDCommenterToggle
 vmap <C-C> <Plug>NERDCommenterToggle
+
+" colon, semicolon
+noremap ; :
+" it will break nerd tree
+" noremap : ;
+inoremap ; :
+inoremap : ;
 
 " NERD Tree
 map <silent> <C-e> :NERDTreeToggle<CR>
@@ -491,6 +506,11 @@ let g:previm_open_cmd="open -a Google\\ Chrome"
 "autocmd BufWritePost *.coffee silent make!
 
 " swif
+"
+" javascript
+inoremap <C-c> console.log('ｷﾀ ━━━ヽ(´ω`)ﾉ ━━━!!');
+inoremap <C-\> console.log(require('util').inspect(result, false, null));
+
 
 " unite
 nnoremap <silent> <Leader>gd :<C-u>GoDef<CR>
