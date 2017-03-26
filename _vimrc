@@ -123,7 +123,7 @@ set softtabstop=4
 set shiftwidth=4
 
 " Convert tab to space
-" autocmd BufWritePre * :%s/\t/  /ge
+autocmd BufWritePre * :%s/\t/  /ge
 
 " remove space when file is saved
 autocmd BufWritePre * :%s/\s\+$//ge
@@ -261,7 +261,8 @@ let g:syntastic_loc_list_height=4 "エラー表示ウィンドウの高さ
 set statusline+=%#warningmsg# "エラーメッセージの書式
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
-let g:syntastic_javascript_checkers = ['jshint', 'eslint']
+"let g:syntastic_javascript_checkers = ['jshint', 'eslint']
+let g:syntastic_javascript_checkers = ['eslint']
 let g:syntastic_go_checkers = ['go', 'golint', 'errcheck']
 let g:syntastic_mode_map = {
   \ 'mode': 'active',
@@ -300,7 +301,7 @@ let g:NERDTreeShowBookmarks=1
 
 "" pathogen
 "execute pathogen#infect()
-"
+
 " VimFiler
 map <silent> ,vf :VimFiler<CR>
 nnoremap <silent> ,e :<C-u>Unite file_rec/async:!<CR>
@@ -312,11 +313,18 @@ nnoremap <silent> ,ut :<C-u>Unite tab<CR>
 nnoremap <silent> ,uq :<C-u>Unite qf<CR>
 nnoremap <silent> ,ul :<C-u>Unite locate<CR>"
 
-" colon, semicolon
-nnoremap ; :
-nnoremap : ;
-
 call unite#custom#default_action('directory' , 'vimfiler')
+
+" swap colon and semicolon
+noremap ; :
+noremap : ;
+inoremap ; :
+inoremap : ;
+
+" Add logs
+inoremap <C-c> console.log('ｷﾀ ━━━ヽ(´ω`)ﾉ ━━━!!');
+inoremap <C-\> console.log(require('util').inspect(result, false, null));
+
 
 " vim-go
 " let g:go_fmt_command = "goimports"
