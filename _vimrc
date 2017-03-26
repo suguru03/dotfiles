@@ -1,82 +1,126 @@
-set nocompatible
-set encoding=utf-8
 filetype off
 
-if has('vim_starting')
-  " gocode
-  set rtp+=$GOROOT/misc/vim
-  " golint
-  "exe "set rtp+=" . globpath($GOPATH, "src/github.com/golang/lint/misc/vim")
-  exe "set rtp+=".globpath($GOPATH, "src/github.com/nsf/gocode/vim")
-  " neobundle
-  set runtimepath+=~/.vim/bundle/neobundle.vim/
-  call neobundle#begin(expand('~/.vim/bundle/'))
-    NeoBundleFetch 'Shougo/neobundle.vim'
+" gocode
+set rtp+=$GOROOT/misc/vim
 
-  "--------------------
-  " plugin
-  "--------------------
+"---------------------------"
+" plugin
+"---------------------------"
 
-  " NeoBundle 'editorconfig-vim'
-  " NeoBundle 'scrooloose/nerdtree'
-  NeoBundle 'ingtk/nerdtree'
-  NeoBundle 'jelera/vim-javascript-syntax'
-  NeoBundle 'scrooloose/syntastic'
-  NeoBundle 'GutenYe/json5.vim'
+" 設定開始
+call plug#begin('~/.vim/plugged')
 
-  NeoBundle 'chrishunt/color-schemes'
+"### Language ###
+Plug 'ingtk/nerdtree', { 'on': ['NERDTreeToggle'] }
 
-  " complcache
-  NeoBundle 'Shougo/neocomplcache'
-  NeoBundle 'Shougo/neosnippet'
-  NeoBundle 'Shougo/neosnippet-snippets'
+if has('nvim')
+  Plug 'benekastah/neomake'
+else
+  Plug 'scrooloose/syntastic'
+endif
+" for go
+Plug 'fatih/vim-go', { 'for': 'go' }
+Plug 'buoto/gotests-vim', { 'for': 'go', 'do': 'go get -u github.com/cweill/gotests' }
+" for js, json
+Plug 'othree/yajs.vim', { 'for': 'javascript' }
+Plug 'elzr/vim-json'
+" for rust
+Plug 'rust-lang/rust.vim', { 'for': 'rust' }
+Plug 'racer-rust/vim-racer', { 'for': 'rust' }
+" for scala
+Plug 'derekwyatt/vim-scala', { 'for': 'scala' }
+" for writing configuration
+Plug 'ekalinin/dockerfile.vim', { 'for': 'Dockerfile' }
+Plug 'evanmiller/nginx-vim-syntax', { 'for': 'nginx' }
+" for Protocol Buffers
+Plug 'uarun/vim-protobuf', { 'for': 'protobuf' }
+" for haskell
+Plug 'neovimhaskell/haskell-vim', { 'for': 'haskell' }
 
-  NeoBundle 'jpo/vim-railscasts-theme'
-  NeoBundle 'jnurmine/Zenburn'
-  NeoBundle '29decibel/codeschool-vim-theme'
-  NeoBundle 'tomasr/molokai'
-  NeoBundle 'sickill/vim-monokai'
-  NeoBundle 'vim-scripts/AutoClose'
+"### Completion ###
+Plug 'Valloric/YouCompleteMe'
+Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
+Plug 'Raimondi/delimitMate'
+Plug 'tpope/vim-surround'
+Plug 'scrooloose/nerdcommenter'
 
-  NeoBundle 'Shougo/unite.vim'
-  NeoBundle 'sgur/unite-qf'
-  NeoBundle 'rhysd/clever-f.vim'
+"### Code Display ###
+Plug 'Yggdroot/indentLine'
+Plug 'easysid/mod8.vim'
+Plug 'joshdick/onedark.vim'
 
-  NeoBundle 'Shougo/vimfiler'
-  NeoBundle 'tpope/vim-surround'
-  NeoBundle 'terryma/vim-multiple-cursors'
-  NeoBundle 'LeafCage/yankround.vim'
-  NeoBundle 'mattn/sonictemplate-vim'
-  NeoBundle 'fatih/vim-go'
-  NeoBundle 'rking/ag.vim'
-  NeoBundle 'thinca/vim-quickrun'
+"### Integrations ###
+Plug 'rking/ag.vim'
+Plug 'rhysd/clever-f.vim'
+Plug 'tpope/vim-fugitive'
+Plug 'airblade/vim-gitgutter'
+Plug 'tyru/open-browser.vim'
+Plug 'editorconfig/editorconfig-vim'
 
-  " NeoBundle 'w0ng/vim-hybrid'
-  NeoBundle 'ingtk/vim-hybrid'
+"### Interface ###
+Plug 'mhinz/vim-startify'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'ctrlpvim/ctrlp.vim'
+Plug 't9md/vim-choosewin'
+Plug 'Shougo/unite.vim'
+Plug 'wincent/command-t', { 'do': 'cd ruby/command-t && ruby extconf.rb && make' }
 
-  NeoBundleLazy 'pangloss/vim-javascript', {
-    \ 'autoload' : { 'filetypes' : [ 'javascript' ] }
-    \ }
+"### Commands ###
+Plug 'tpope/vim-repeat'
+Plug 'LeafCage/yankround.vim'
+Plug 'Shougo/vimproc.vim', { 'do': 'make' }
+Plug 'thinca/vim-quickrun'
 
-  NeoBundle 'Shougo/vimproc', {
-    \ 'build' : {
-    \  'mac' : 'make -f make_mac.mak',
-    \  'unix' : 'make -f make_unix.mak',
-    \  },
-    \ }
+"### Other ###
+Plug 'yuroyoro/smooth_scroll.vim'
+Plug 'majutsushi/tagbar'
+Plug 'easymotion/vim-easymotion'
+Plug 'vim-scripts/sudo.vim'
+Plug 'kannokanno/previm'
 
-  NeoBundleCheck
-  call neobundle#end()
+call plug#end()
+
+"---------------------------"
+" color
+"---------------------------"
+
+if !has('gui_running') || has('nvim')
+  if (has("termguicolors"))
+    set termguicolors
+    let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+    let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+   endif
+
+  " set t_Co=256
+  syntax enable
+  set background=dark
+  "colorscheme onedark
+  colorscheme mod8
 endif
 
-filetype plugin on
-
-"--------------------
+"---------------------------
 " basic
-"--------------------
+"---------------------------
 
-set directory=$HOME/vimbackup
-set backupdir=$HOME/vimbackup
+set autoread " automaticaly reload file who chaged outside
+set nobackup " not create backup file
+set noswapfile " not create swap file
+set noundofile
+set showcmd
+set showmode
+set modeline
+set showtabline=2 " 常にタブを表示
+setlocal formatoptions-=r
+setlocal formatoptions-=o
+set autochdir
+set ic
+
+if has('nvim')
+  let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
+endif
+
 if has('nvim')
   set clipboard+=unnamedplus
   function! ClipboardYank()
@@ -92,245 +136,384 @@ if has('nvim')
   onoremap <silent> y y:call ClipboardYank()<cr>
   onoremap <silent> d d:call ClipboardYank()<cr>
 
-  let g:python3_host_prog = expand('$HOME') . '/.pyenv/shims/python3'
+  " let g:python3_host_prog = expand('$HOME') . '/.anyenv/envs/pyenv/shims/python3'
 else
   set clipboard=unnamed,autoselect " use os clipboard
 endif
-set backspace=indent,eol,start
-" set autochdir
-set wrapscan
 
-"--------------------
+let mapleader = "\<Space>"
+"let mapleader = ","
+nnoremap <silent> <Leader>t :<C-u>tabedit<CR>
+
+"---------------------------
 " appearance
-"--------------------
+"---------------------------
 
-set number " line nember
 set showmatch
-set list
-set listchars=tab:>\ ,trail:_,nbsp:%,extends:>,precedes:<
-set cursorline
+set number " line number
+set linespace=4
+""set list " 不可視文字の表示
+set conceallevel=0
+let g:vim_json_syntax_conceal=0
+set hlsearch
 
-"--------------------
+" コマンド実行中は再描画しない
+set lazyredraw
+" 高速ターミナル接続を行う
+set ttyfast
+
+" ESC 2回でハイライトを解除
+nnoremap <ESC><ESC> :nohlsearch<CR>
+
+"---------------------------
 " indent
-"--------------------
+"---------------------------
 
-" set autoindent
+set autoindent
 set smartindent
-" set expandtab
-set smarttab
-set tabstop=4
-set softtabstop=4
-set shiftwidth=4
+"set tabstop=2 " tabstop
+"set shiftwidth=2 " タブを挿入するときの幅
+"set expandtab " convert harf space
+set tabstop=4 " tabstop
+set shiftwidth=4 " タブを挿入するときの幅
+"set expandtab " convert harf space
 
-" Convert tab to space
-autocmd BufWritePre * :%s/\t/  /ge
+"" 基本editorconfigに寄せる（vscodeとの互換のため）
+"if has("autocmd")
+"
+"  au FileType html set ts=2 sw=2 expandtab
+"  au FileType php set ts=4 sw=4 noexpandtab
+"  au FileType python set ts=4 sw=4 expandtab
+"  au FileType ruby set ts=2 sw=2 expandtab
+"  au FileType slim set ts=2 sw=2 expandtab
+"  au FileType coffee set ts=2 sw=2 expandtab
+"  au FileType javascript set ts=2 sw=2 expandtab
+"  au FileType yaml set ts=2 sw=2 expandtab
+"  au FileType go set ts=2 sw=2
+"  au FileType terraform set ts=2 sw=2 expandtab
+"  au FileType swift set ts=4 sw=4 expandtab
+"  au FileType crystal set ts=2 sw=2 expandtab
+"  au FileType make set ts=4 sw=4 noexpandtab
+"
+"  au BufRead,BufNewFile *.scala setf scala
+"  au BufRead,BufNewFile *.go setf go
+"  au BufRead,BufNewFile,BufEnter *.rs setf rust
+"
+"endif
 
-" remove space when file is saved
-autocmd BufWritePre * :%s/\s\+$//ge
-autocmd BufWritePre * :%s/　\+$//ge
-
-if has("autocmd")
-    au FileType html set ts=2 sw=2 sts=2 expandtab
-    au FileType yaml set ts=2 sw=2 sts=2 expandtab
-    au FileType coffee set ts=2 sw=2 sts=2 expandtab
-    au FileType javascript set ts=2 sw=2 sts=2 expandtab
-    au FileType json nnoremap <buffer> B :!%python -m json.tool<cr>
-
-    au BufRead,BufNewFile *.ejs set filetype=jst ts=2 sw=2 sts=2 expandtab
-    au BufRead,BufNewFile *.ejs.* set filetype=jst ts=2 sw=2 sts=2 expandtab
-    au BufRead,BufNewFile Vagrantfile set filetype=ruby ts=2 sw=2 sts=2 expandtab
-endif
-
-"--------------------
+"---------------------------
 " editing
-"--------------------
+"---------------------------
 
-set iminsert=0 imsearch=0
 set noimdisable
+set iminsert=0 imsearch=0
 set noimcmdline
+inoremap <silent> <ESC> <ESC>:set iminsert=0<CR>
 
-" Jq for vim
+augroup auto_comment_off
+autocmd!
+  autocmd BufEnter * setlocal formatoptions-=r
+  autocmd BufEnter * setlocal formatoptions-=o
+augroup END
+
+" jq for vim
 command! -nargs=? Jq call s:Jq(<f-args>)
 function! s:Jq(...)
-    if 0 == a:0
-        let l:arg = "."
-    else
-        let l:arg = a:1
-    endif
-    execute "%! jq \"" . l:arg . "\""
+  if 0 == a:0
+    let l:arg = "."
+  else
+    let l:arg = a:1
+  endif
+  execute "%! jq \"" . l:arg . "\""
 endfunction
 
-" command! -nargs=? Trim call s:Trim()
-" function! s:Trim()
-"     let cursor = getpos(".")
-"     %s/\s\+$//ge
-"     %s/　\+$//ge
-"     call setpos(".", cursor)
-"     unlet cursor
-" endfunction
+command! -nargs=? Trim call s:Trim()
+function! s:Trim()
+  let cursor = getpos(".")
+  %s/\s\+$//ge
+  %s/　\+$//ge
+  call setpos(".", cursor)
+  unlet cursor
+endfunction
+"autocmd BufWritePre * call <SID>Trim()
 
-"--------------------
-" grep
-"--------------------
-
-set grepformat=%f:%l:%m,%f:%l%m,%f\ \ %l%m,%f
-set grepprg=grep\ -nh
-
-
-"--------------------
-" colorscheme
-"--------------------
-
-" enable 256 colors in GNOME terminal (for my Ubuntu VM)
-if $COLORTERM == 'gnome-terminal'
-    set t_Co=256
+nnoremap <silent> <Leader>r :<C-u>e!<CR>
+"---------------------------
+" move
+"---------------------------
+if !has('gui_running')
+  nnoremap <Tab> gt
+  nnoremap <S-Tab> gT
 endif
 
-if !has('gui_running')
-  set t_Co=256
-  syntax enable
-  set background=dark
-  colorscheme base16-railscasts
-  " colorscheme desert
-  " colorscheme railscasts
-  " colorscheme hybrid
-end
+nnoremap <Right> <Nop>
+nnoremap <Left> <Nop>
 
-"--------------------
-" move
-"--------------------
+" prohibit arrow keys
+inoremap <Right> <Nop>
+"inoremap <Left> <Nop> " 日本語入力時に誤動作するためコメント
+inoremap <Up> <Nop>
+inoremap <Down> <Nop>
+nnoremap <Right> <Nop>
+nnoremap <Left> <Nop>
+nnoremap <Up> <Nop>
+nnoremap <Down> <Nop>
+nnoremap 0 :<C-u>call append(expand('.'), '')<Cr>
+
+if has('nvim')
+  nmap <BS> <C-W>h
+endif
 
 " moving each window like eamcs.
-nnoremap <C-j> <C-w>j
-nnoremap <C-k> <C-w>k
-nnoremap <C-l> <C-w>l
-nnoremap <C-h> <C-w>h
+nmap <C-j> <C-w>j
+nmap <C-k> <C-w>k
+nmap <C-l> <C-w>l
+nmap <C-h> <C-w>h
 
-"--------------------
+nnoremap <C-w>e <C-w>x
+nnoremap <C-w><C-e> <C-w>x
+
+" easymotion
+let g:EasyMotion_do_mapping = 0
+
+nmap s <Plug>(easymotion-s2)
+xmap s <Plug>(easymotion-s2)
+omap z <Plug>(easymotion-s2)
+
+map <Leader>j <Plug>(easymotion-j)
+map <Leader>k <Plug>(easymotion-k)
+
+let g:EasyMotion_startofline = 0
+let g:EasyMotion_keys = ';HKLYUIOPNM,QWERTASDGZXCVBJF'
+let g:EasyMotion_use_upper = 1
+let g:EasyMotion_enter_jump_first = 1
+let g:EasyMotion_space_jump_first = 1
+
+nmap g/ <Plug>(easymotion-sn)
+xmap g/ <Plug>(easymotion-sn)
+omap g/ <Plug>(easymotion-tn)
+
+"---------------------------
 " completion
-"--------------------
+"---------------------------
+
+"++++++++++++++++++++++++++++++++++++++++++++++++++
+" NeoComplete
+"if has('nvim')
+"  " Use deoplete
+"  let g:deoplete#enable_at_startup = 1
+"  let g:deoplete#enable_smart_case = 1
+"  let g:deoplete#enable_ignore_case = 1
+"  let g:deoplete#auto_completion_start_length=2
+"  let g:deoplete#sources#syntax#min_keyword_length = 1
+"  let g:deoplete#enable_fuzzy_completion = 1
+"  let g:deoplete#ignore_sources = {}
 "
-set incsearch
+"  "inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
+"  "inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<S-TAB>"
+"  "inoremap <expr><C-h> deolete#mappings#smart_close_popup()."\<C-h>"
+"  "inoremap <expr><BS> deoplete#mappings#smart_close_popup()."\<C-h>"
+"  "inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
+"  "function! s:my_cr_function() abort
+"  "  return deoplete#mappings#close_popup()
+"  "endfunction
+"  "inoremap <expr><CR> pumvisible() ? deoplete#mappings#close_popup() : "\<CR>"
+"
+"
+"  let g:deoplete#sources#go#align_class = 1
+"  let g:deoplete#sources#go#gocode_binary = expand('$GOPATH') . '/bin/gocode'
+"else
+  "let g:acp_enableAtStartup = 0
+  "let g:neocomplete#enable_at_startup = 1
+  "let g:neocomplete#enable_smart_case = 1
+  "let g:neocomplete#enable_camel_case = 1
+  "if !exists('g:neocomplete#keyword_patterns')
+  "  let g:neocomplete#keyword_patterns = {}
+  "endif
+  "let g:neocomplete#keyword_patterns['default'] = '\h\w*'
 
-" NeoComplCache
-let g:neocomplcache_enable_at_startup = 1 " Use neocomplcache.
-let g:neocomplcache_enable_smart_case = 1 " Use smartcase.
-let g:neocomplcache_enable_camel_case_completion = 1 " Use camel case completion.
-let g:neocomplcache_enable_underbar_completion = 1 " Use underbar completion.
-set completeopt=menuone,menu,preview " 補完ウィンドウの設定
+  "" tabで補完候補の選択を行う
+  "inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
+  "inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<S-TAB>"
+  "inoremap <expr><CR> pumvisible() ? neocomplete#close_popup() : "\<CR>"
 
-" tabで補完候補の選択を行う
-inoremap <expr><TAB> pumvisible() ? "\<Down>" : "\<TAB>"
-inoremap <expr><S-TAB> pumvisible() ? "\<Up>" : "\<S-TAB>"
+  " Trigger configuration. Do not use <tab> if you use
+  " https://github.com/Valloric/YouCompleteMe.
 
-" NeoSnippet
-imap <C-k>     <Plug>(neosnippet_expand_or_jump)
-smap <C-k>     <Plug>(neosnippet_expand_or_jump)
-xmap <C-k>     <Plug>(neosnippet_expand_target)
+  let g:ycm_key_list_select_completion = ['<TAB>']
+  let g:ycm_key_list_previous_completion = ['<S-TAB>']
+  let g:ycm_confirm_extra_conf = 1
 
-" For snippet_complete marker.
-if has('conceal')
-  set conceallevel=2 concealcursor=i
+"endif
+
+let g:UltiSnipsExpandTrigger="<C-k>"
+let g:UltiSnipsJumpForwardTrigger="<C-k>"
+let g:UltiSnipsJumpBackwardTrigger="<C-j>"
+
+" If you want :UltiSnipsEdit to split your window.
+let g:UltiSnipsEditSplit="vertical"
+"++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+""++++++++++++++++++++++++++++++++++++++++++++++++++
+"" NeoSnippet
+"imap <C-k> <Plug>(neosnippet_expand_or_jump)
+"smap <C-k> <Plug>(neosnippet_expand_or_jump)
+"xmap <C-k> <Plug>(neosnippet_expand_target)
+"
+"
+""let g:neosnippet#disable_runtime_snippets = {
+""  \ '_' : 1,
+""  \ }
+"
+"" for golang
+"let g:go_snippet_engine = "neosnippet"
+"
+""For snippet_complete marker.
+"if has('conceal')
+"  set conceallevel=2 concealcursor=i
+"endif
+""++++++++++++++++++++++++++++++++++++++++++++++++++
+
+"---------------------------
+" plugin
+"---------------------------
+
+"let g:polyglot_disabled = ['json']
+
+if has('nvim')
+  " neomake
+  let g:neomake_javascript_enabled_makers = ['eslint']
+  let g:neomake_go_enabled_makers = ['go', 'govet']
+  autocmd! BufWritePost * Neomake
+else
+  " syntastic
+  let g:syntastic_mode_map = { 'mode': 'active',
+    \ 'active_filetypes': ['javascript'],
+    \ 'passive_filetypes': ['html', 'python', 'go'] }
+  "let g:syntastic_auto_loc_list = 0
+  let g:syntastic_auto_loc_list = 2
+  let g:syntastic_javascript_checkers = ['standard']
+  let g:syntastic_python_checkers = ['pylint']
+  let g:syntastic_go_checkers = ['go', 'govet', 'errcheck']
 endif
 
-" for golang
-" let g:go_snippet_engine = "neosnippet"
+" NERD Commenter
+let NERDSpaceDelims = 1
+let g:NERDTreeShowBookmarks = 1
+nmap <C-C> <Plug>NERDCommenterToggle
+vmap <C-C> <Plug>NERDCommenterToggle
 
-"--------------------
-" plugin
-"--------------------
+" NERD Tree
+map <silent> <C-e> :NERDTreeToggle<CR>
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
+
+" choosewin
+nmap  -  <Plug>(choosewin)
+nmap  -  <Plug>(choosewin)
+let g:choosewin_overlay_enable = 1
+let g:choosewin_overlay_clear_multibyte = 1
+
+" vim-indent-guides
+let g:indent_guides_enable_on_vim_startup = 1
+let g:indent_guides_guide_size = 1
+
+" smooth_scroll.vim
+map :call SmoothScroll("d",1, 1)<CR>
+map :call SmoothScroll("u",1, 1)<CR>
+
+" unite
+nnoremap <silent> <Leader>ub :<C-u>Unite buffer<CR>
+nnoremap <silent> <Leader>uf :<C-u>UniteWithBufferDir -buffer-name=files file<CR>
+nnoremap <silent> <Leader>ut :<C-u>Unite tab<CR>
+nnoremap <silent> <Leader>uy :<C-u>Unite yankround<CR>
+
+" Vim AirLine
+let g:airline_theme = 'bubblegum'
+
+" Clever-f
+let g:clever_f_fix_key_direction = 1
+let g:clever_f_smart_case = 1
+
+" Don't use preview at QuickFix
+let QFix_PreviewEnable = 0
+
+" ctrlp
+"if executable('ag')
+"  let g:ctrlp_user_command = 'ag %s -i --nocolor --nogroup -g ""'
+"endif
+"let g:ctrlp_map = '<Leader>p'
+"let g:ctrlp_working_path_mode = 'ra'
+"let g:ctrlp_extensions = ['mixed']
+"let g:ctrlp_by_filename = 1
+"let g:ctrlp_clear_cache_on_exit = 0
+"let g:ctrlp_mruf_max = 500
+"let g:ctrlp_custom_ignore = 'DS_Store\|\.git\|\.hg\|\.svn\|optimized\|compiled\|node_modules\|bower_components\|vendor'
+"let g:ctrlp_prompt_mappings = {
+"  \ 'PrtSelectMove("j")':   ['<c-n>', '<down>','<c-j>'],
+"  \ 'PrtSelectMove("k")':   ['<c-p>', '<up>','<c-k>'],
+"  \ 'AcceptSelection("e")': ['<c-v>', '<2-LeftMouse>'],
+"  \ 'AcceptSelection("v")': ['<cr>', '<RightMouse>'],
+"  \ }
+" Command-T
+nmap <silent> <Leader>p <Plug>(CommandT)
+let g:CommandTMaxFiles=200000
+let g:CommandTMaxDepth=15
+let g:CommandTScanDotDirectories=0
+let g:CommandTWildIgnore=&wildignore . ',*/DS_Store,*/.git,*/.hg,*/.svn,*/node_modules,*/bower_components,*/vendor'
 
 " yankround
-let g:yankround_max_history=30
+let g:yankround_max_history = 30
+
 nmap p <Plug>(yankround-p)
 nmap P <Plug>(yankround-P)
-nmap gp <Plug>(yankround-gp)
-nmap gP <Plug>(yankround-gP)
 nmap <C-p> <Plug>(yankround-prev)
 nmap <C-n> <Plug>(yankround-next)
 
-" if yankround is not active, ctrlp is available
-nnoremap <silent><SID>(ctrlp) :<C-u>CtrlP<CR>
-nmap <expr><C-p> yankround#is_active() ? "\<Plug>(yankround-prev)" : "<SID>(ctrlp)""
+" indentLine
+set list lcs=tab:\¦\
+" let g:indentLine_conceallevel = 0
 
-" jshint
-let g:syntastic_check_on_open=0 "ファイルを開いたときはチェックしない
-let g:syntastic_check_on_save=1 "保存時にはチェック
-let g:syntastic_auto_loc_list=1 "エラーがあったら自動でロケーションリストを開く
-let g:syntastic_loc_list_height=4 "エラー表示ウィンドウの高さ
-set statusline+=%#warningmsg# "エラーメッセージの書式
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-"let g:syntastic_javascript_checkers = ['jshint', 'eslint']
-let g:syntastic_javascript_checkers = ['eslint']
-let g:syntastic_go_checkers = ['go', 'golint', 'errcheck']
-let g:syntastic_mode_map = {
-  \ 'mode': 'active',
-  \ 'active_filetypes': ['ruby', 'javascript','json', 'go'],
-  \ 'passive_filetypes': []
-  \ }
+"" python3 support for nvim
+"let g:python3_host_prog = expand('$HOME') . '/.anyenv/envs/pyenv/shims/python3'
 
-" autocmd FileType javascript nnoremap <buffer> <Leader>f :%!jscs -x<CR>
+" vim-markdown
+"let g:vim_markdown_folding_disabled=1
 
-"エラー表示マークを変更
-let g:syntastic_enable_signs=1
-let g:syntastic_error_symbol='✗'
-let g:syntastic_warning_symbol='⚠'
+" previm
+let g:previm_open_cmd="open -a Google\\ Chrome"
 
-" multi coursor
-let g:multi_cursor_use_default_mapping=0
-let g:multi_cursor_next_key='<C-n>'
-let g:multi_cursor_prev_key='<C-p>'
-let g:multi_cursor_skip_key='<C-x>'
-let g:multi_cursor_quit_key='<Esc>'
+"---------------------------
+" programming
+"---------------------------
 
-" NERDTree
-nmap <silent> <C-e>      :NERDTreeToggle<CR>
-vmap <silent> <C-e> <Esc>:NERDTreeToggle<CR>
-omap <silent> <C-e>      :NERDTreeToggle<CR>
-imap <silent> <C-e> <Esc>:NERDTreeToggle<CR>
-cmap <silent> <C-e> <C-u>:NERDTreeToggle<CR>
-autocmd vimenter * if !argc() | NERDTree | endif
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
-let g:NERDTreeIgnore=['\.clean$', '\.swp$', '\.bak$', '\~$']
-let g:NERDTreeShowHidden=1
-let g:NERDTreeMinimalUI=1
-let g:NERDTreeDirArrows=0
-let g:NERDTreeMouseMode=2
-let g:NERDTreeShowBookmarks=1
+"" coffeescript
+"autocmd BufWritePost *.coffee silent make!
 
-"" pathogen
-"execute pathogen#infect()
-
-" VimFiler
-map <silent> ,vf :VimFiler<CR>
-nnoremap <silent> ,e :<C-u>Unite file_rec/async:!<CR>
+" swif
 
 " unite
-nnoremap <silent> ,ub :<C-u>Unite buffer<CR>
-nnoremap <silent> ,uf :<C-u>UniteWithBufferDir -buffer-name=files file<CR>
-nnoremap <silent> ,ut :<C-u>Unite tab<CR>
-nnoremap <silent> ,uq :<C-u>Unite qf<CR>
-nnoremap <silent> ,ul :<C-u>Unite locate<CR>"
+nnoremap <silent> <Leader>gd :<C-u>GoDef<CR>
 
-call unite#custom#default_action('directory' , 'vimfiler')
+" go
+let g:go_fmt_autosave = 0
+let g:go_fmt_command = "gofmt"
+"let g:go_fmt_command = "goimports"
+let g:go_highlight_functions = 1
+let g:go_highlight_methods = 1
+let g:go_highlight_fields = 1
+let g:go_highlight_types = 1
+let g:go_highlight_operators = 1
+let g:go_highlight_build_constraints = 1
+"nnoremap <silent> <Leader>gi :<C-u>GoImports<CR>
+"nnoremap <silent> <Leader>gf :<C-u>GoFmt<CR>
 
-" swap colon and semicolon
-noremap ; :
-noremap : ;
-inoremap ; :
-inoremap : ;
+" rust
+let g:rustfmt_autosave = 1
+let g:rustfmt_command = expand('$HOME') . '/.cargo/bin/rustfmt'
 
-" Add logs
-inoremap <C-c> console.log('ｷﾀ ━━━ヽ(´ω`)ﾉ ━━━!!');
-inoremap <C-\> console.log(require('util').inspect(result, false, null));
+set hidden
+let g:racer_cmd = expand('$HOME') . '/.cargo/bin/racer'
+let $RUST_SRC_PATH = expand('$HOME') . '/rust-src/rustc-1.12.0/src'
 
-
-" vim-go
-" let g:go_fmt_command = "goimports"
-" let g:go_highlight_functions = 1
-" let g:go_highlight_methods = 1
-" let g:go_highlight_structs = 1
-" let g:go_highlight_operators = 1
-" let g:go_term_enabled = 1
-" let g:go_highlight_build_constraints = 1
+filetype plugin indent on
