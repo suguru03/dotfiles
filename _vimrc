@@ -16,7 +16,7 @@ Plug 'ingtk/nerdtree', { 'on': ['NERDTreeToggle'] }
 if has('nvim')
   Plug 'benekastah/neomake'
 else
-  Plug 'scrooloose/syntastic'
+  Plug 'vim-syntastic/syntastic'
 endif
 " for go
 Plug 'nsf/gocode', { 'rtp': 'vim', 'do': '~/.vim/plugged/gocode/vim/symlink.sh' }
@@ -81,6 +81,7 @@ Plug 'majutsushi/tagbar'
 Plug 'easymotion/vim-easymotion'
 Plug 'vim-scripts/sudo.vim'
 Plug 'kannokanno/previm'
+Plug 'powerline/powerline', {'rtp': 'powerline/bindings/vim/'}
 
 call plug#end()
 
@@ -390,6 +391,8 @@ if has('nvim')
   autocmd! BufWritePost * Neomake
 else
   " syntastic
+  let g:syntastic_always_populate_loc_list = 1
+  let g:syntastic_check_on_wq = 0
   let g:syntastic_check_on_open=0 "ファイルを開いたときはチェックしない
   let g:syntastic_check_on_save=1 "保存時にはチェック
   let g:syntastic_auto_loc_list=1 "エラーがあったら自動でロケーションリストを開く
@@ -397,13 +400,18 @@ else
   set statusline+=%#warningmsg# "エラーメッセージの書式
   set statusline+=%{SyntasticStatuslineFlag()}
   set statusline+=%*
-  let g:syntastic_javascript_checkers = ['eslint']
+  let g:syntastic_javascript_checkers = ['jshint', 'eslint']
   let g:syntastic_mode_map = { 'mode': 'active',
     \ 'active_filetypes': ['javascript'],
     \ 'passive_filetypes': ['html', 'python', 'go'] }
-  let g:syntastic_javascript_checkers = ['standard']
+  let g:syntastic_javascript_checkers = ['eslint']
   let g:syntastic_python_checkers = ['pylint']
   let g:syntastic_go_checkers = ['go', 'govet', 'errcheck']
+
+  "エラー表示マークを変更
+  let g:syntastic_enable_signs=1
+  let g:syntastic_error_symbol='✗'
+  let g:syntastic_warning_symbol='⚠'
 endif
 
 " NERD Commenter
@@ -418,6 +426,10 @@ noremap ; :
 " noremap : ;
 inoremap ; :
 inoremap : ;
+
+" remove space when file is saved
+autocmd BufWritePre * :%s/\s\+$//ge
+autocmd BufWritePre * :%s/　\+$//ge
 
 " NERD Tree
 map <silent> <C-e> :NERDTreeToggle<CR>

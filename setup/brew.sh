@@ -30,6 +30,7 @@ brew install mysql
 brew install coreutils
 brew install python
 brew linkapps python
+brew install cmake
 
 # docker
 brew install docker-machine-driver-xhyve

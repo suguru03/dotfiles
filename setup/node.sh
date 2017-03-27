@@ -10,4 +10,5 @@ npm install -g eslint \
                bower \
                mocha \
                react-native-cli \
-               pm2
+               pm2 \
+               tern
