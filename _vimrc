@@ -24,6 +24,8 @@ Plug 'fatih/vim-go', { 'for': 'go' }
 Plug 'vim-jp/vim-go-extra', { 'for': 'go' }
 Plug 'buoto/gotests-vim', { 'for': 'go', 'do': 'go get -u github.com/cweill/gotests' }
 " for js, json
+Plug 'jelera/vim-javascript-syntax'
+Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
 Plug 'othree/yajs.vim', { 'for': 'javascript' }
 Plug 'elzr/vim-json'
 " for rust
@@ -64,16 +66,17 @@ Plug 'editorconfig/editorconfig-vim'
 Plug 'mhinz/vim-startify'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-Plug 'ctrlpvim/ctrlp.vim'
 Plug 't9md/vim-choosewin'
 Plug 'Shougo/unite.vim'
 Plug 'wincent/command-t', { 'do': 'cd ruby/command-t && ruby extconf.rb && make' }
 
 "### Commands ###
+Plug 'terryma/vim-multiple-cursors'
 Plug 'tpope/vim-repeat'
 Plug 'LeafCage/yankround.vim'
 Plug 'Shougo/vimproc.vim', { 'do': 'make' }
 Plug 'thinca/vim-quickrun'
+Plug 'LeafCage/yankround.vim'
 
 "### Other ###
 Plug 'yuroyoro/smooth_scroll.vim'
@@ -115,10 +118,12 @@ set showcmd
 set showmode
 set modeline
 set showtabline=2 " 常にタブを表示
-setlocal formatoptions-=r
-setlocal formatoptions-=o
+"setlocal formatoptions-=r
+"setlocal formatoptions-=o
 set autochdir
 set ic
+
+set backspace=indent,eol,start
 
 if has('nvim')
   let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
@@ -154,7 +159,7 @@ nnoremap <silent> <Leader>t :<C-u>tabedit<CR>
 
 set showmatch
 set number " line number
-set linespace=4
+"ssofttabstopet linespace=4
 ""set list " 不可視文字の表示
 set conceallevel=0
 let g:vim_json_syntax_conceal=0
@@ -174,12 +179,9 @@ nnoremap <ESC><ESC> :nohlsearch<CR>
 
 set autoindent
 set smartindent
-"set tabstop=2 " tabstop
-"set shiftwidth=2 " タブを挿入するときの幅
-"set expandtab " convert harf space
 set tabstop=4 " tabstop
-set shiftwidth=4 " タブを挿入するときの幅
-"set expandtab " convert harf space
+set softtabstop=2
+set shiftwidth=2 " タブを挿入するときの幅
 
 "" 基本editorconfigに寄せる（vscodeとの互換のため）
 if has("autocmd")
@@ -204,6 +206,10 @@ if has("autocmd")
 "
 endif
 
+" vim-javascript
+let g:javascript_plugin_jsdoc = 1
+set foldmethod=syntax
+
 "---------------------------
 " editing
 "---------------------------
@@ -213,11 +219,11 @@ set iminsert=0 imsearch=0
 set noimcmdline
 inoremap <silent> <ESC> <ESC>:set iminsert=0<CR>
 
-augroup auto_comment_off
-autocmd!
-  autocmd BufEnter * setlocal formatoptions-=r
-  autocmd BufEnter * setlocal formatoptions-=o
-augroup END
+"augroup auto_comment_off
+"autocmd!
+"  autocmd BufEnter * setlocal formatoptions-=r
+"  autocmd BufEnter * setlocal formatoptions-=o
+"augroup END
 
 " jq for vim
 command! -nargs=? Jq call s:Jq(<f-args>)
@@ -345,7 +351,8 @@ omap g/ <Plug>(easymotion-tn)
 
   let g:ycm_key_list_select_completion = ['<TAB>']
   let g:ycm_key_list_previous_completion = ['<S-TAB>']
-  let g:ycm_confirm_extra_conf = 1
+  let g:ycm_confirm_extra_conf = 0
+  inoremap <expr> <Enter> pumvisible() ? "<Esc>a" : "<Enter>"
 
 "endif
 
@@ -401,7 +408,8 @@ else
   set statusline+=%{SyntasticStatuslineFlag()}
   set statusline+=%*
   let g:syntastic_javascript_checkers = ['jshint', 'eslint']
-  let g:syntastic_mode_map = { 'mode': 'active',
+  let g:syntastic_mode_map = {
+    \ 'mode': 'active',
     \ 'active_filetypes': ['javascript'],
     \ 'passive_filetypes': ['html', 'python', 'go'] }
   let g:syntastic_javascript_checkers = ['eslint']
@@ -414,12 +422,6 @@ else
   let g:syntastic_warning_symbol='⚠'
 endif
 
-" NERD Commenter
-let NERDSpaceDelims = 1
-let g:NERDTreeShowBookmarks = 1
-nmap <C-C> <Plug>NERDCommenterToggle
-vmap <C-C> <Plug>NERDCommenterToggle
-
 " colon, semicolon
 noremap ; :
 " it will break nerd tree
@@ -430,6 +432,12 @@ inoremap : ;
 " remove space when file is saved
 autocmd BufWritePre * :%s/\s\+$//ge
 autocmd BufWritePre * :%s/　\+$//ge
+
+" NERD Commenter
+let NERDSpaceDelims = 1
+let g:NERDTreeShowBookmarks = 1
+nmap <C-C> <Plug>NERDCommenterToggle
+vmap <C-C> <Plug>NERDCommenterToggle
 
 " NERD Tree
 map <silent> <C-e> :NERDTreeToggle<CR>
@@ -465,23 +473,6 @@ let g:clever_f_smart_case = 1
 " Don't use preview at QuickFix
 let QFix_PreviewEnable = 0
 
-" ctrlp
-"if executable('ag')
-"  let g:ctrlp_user_command = 'ag %s -i --nocolor --nogroup -g ""'
-"endif
-"let g:ctrlp_map = '<Leader>p'
-"let g:ctrlp_working_path_mode = 'ra'
-"let g:ctrlp_extensions = ['mixed']
-"let g:ctrlp_by_filename = 1
-"let g:ctrlp_clear_cache_on_exit = 0
-"let g:ctrlp_mruf_max = 500
-"let g:ctrlp_custom_ignore = 'DS_Store\|\.git\|\.hg\|\.svn\|optimized\|compiled\|node_modules\|bower_components\|vendor'
-"let g:ctrlp_prompt_mappings = {
-"  \ 'PrtSelectMove("j")':   ['<c-n>', '<down>','<c-j>'],
-"  \ 'PrtSelectMove("k")':   ['<c-p>', '<up>','<c-k>'],
-"  \ 'AcceptSelection("e")': ['<c-v>', '<2-LeftMouse>'],
-"  \ 'AcceptSelection("v")': ['<cr>', '<RightMouse>'],
-"  \ }
 " Command-T
 nmap <silent> <Leader>p <Plug>(CommandT)
 let g:CommandTMaxFiles=200000
