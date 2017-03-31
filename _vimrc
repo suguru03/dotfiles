@@ -207,8 +207,8 @@ if has("autocmd")
 endif
 
 " vim-javascript
-let g:javascript_plugin_jsdoc = 1
-set foldmethod=syntax
+"let g:javascript_plugin_jsdoc = 1
+"set foldmethod=syntax
 
 "---------------------------
 " editing
