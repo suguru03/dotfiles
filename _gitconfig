@@ -1,0 +1,27 @@
+[core]
+	excludesfile = ~/.gitignore_global
+	editor = vim
+[difftool "sourcetree"]
+	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+	path =
+[mergetool "sourcetree"]
+	cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+	trustExitCode = true
+[user]
+	name = Suguru Motegi
+	email = suguru.motegi@gmail.com
+[commit]
+	template = ~/.stCommitMsg
+[alias]
+	br = branch
+	ci = commit
+	co = checkout
+	cp = cherry-pick
+	fa = fetch --all
+	fo = fetch origin
+	hard = reset --hard
+	po = push origin
+	pop = stash pop
+	pr = pull --rebase
+	soft = reset --soft
+	st = status
