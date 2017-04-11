@@ -471,15 +471,15 @@
 	<key>NSWindow Frame SessionsPreferences</key>
 	<string>269 139 606 456 0 0 1680 1027 </string>
 	<key>NSWindow Frame SharedPreferences</key>
-	<string>36 396 796 473 0 0 1680 1027 </string>
+	<string>36 549 918 381 0 0 1680 1027 </string>
 	<key>NSWindow Frame UKCrashReporter</key>
 	<string>127 443 592 584 0 0 1680 1027 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
-	<string>0 10 1676 1017 0 0 1680 1027 </string>
+	<string>713 1056 1914 1051 713 1050 1920 1057 </string>
 	<key>NSWindow Frame iTerm Window 1</key>
-	<string>0 10 836 1017 0 0 1680 1027 </string>
+	<string>713 1060 1676 1017 713 1050 1920 1057 </string>
 	<key>NSWindow Frame iTerm Window 2</key>
-	<string>840 10 836 1017 0 0 1680 1027 </string>
+	<string>0 10 1676 1017 0 0 1680 1027 </string>
 	<key>NSWindow Frame iTerm Window 3</key>
 	<string>0 10 1676 1017 0 0 1680 1027 </string>
 	<key>NSWindow Frame iTerm Window 4</key>
@@ -505,13 +505,13 @@
 				<key>Alpha Component</key>
 				<real>1</real>
 				<key>Blue Component</key>
-				<real>0.037915889173746109</real>
+				<real>0.021012872457504272</real>
 				<key>Color Space</key>
 				<string>Calibrated</string>
 				<key>Green Component</key>
-				<real>0.74069619178771973</real>
+				<real>0.41836398839950562</real>
 				<key>Red Component</key>
-				<real>0.7440151572227478</real>
+				<real>0.7371675968170166</real>
 			</dict>
 			<key>Ansi 10 Color</key>
 			<dict>
@@ -614,21 +614,29 @@
 			</dict>
 			<key>Ansi 7 Color</key>
 			<dict>
+				<key>Alpha Component</key>
+				<real>1</real>
 				<key>Blue Component</key>
-				<real>0.73333334922790527</real>
+				<real>0.67519295215606689</real>
+				<key>Color Space</key>
+				<string>Calibrated</string>
 				<key>Green Component</key>
-				<real>0.73333334922790527</real>
+				<real>0.67519295215606689</real>
 				<key>Red Component</key>
-				<real>0.73333334922790527</real>
+				<real>0.67519301176071167</real>
 			</dict>
 			<key>Ansi 8 Color</key>
 			<dict>
+				<key>Alpha Component</key>
+				<real>1</real>
 				<key>Blue Component</key>
-				<real>0.3333333432674408</real>
+				<real>0.61161446571350098</real>
+				<key>Color Space</key>
+				<string>Calibrated</string>
 				<key>Green Component</key>
-				<real>0.3333333432674408</real>
+				<real>0.61161375045776367</real>
 				<key>Red Component</key>
-				<real>0.3333333432674408</real>
+				<real>0.61166000366210938</real>
 			</dict>
 			<key>Ansi 9 Color</key>
 			<dict>
@@ -683,12 +691,16 @@
 			<string></string>
 			<key>Cursor Color</key>
 			<dict>
+				<key>Alpha Component</key>
+				<real>1</real>
 				<key>Blue Component</key>
-				<real>0.73333334922790527</real>
+				<real>0.73256611824035645</real>
+				<key>Color Space</key>
+				<string>Calibrated</string>
 				<key>Green Component</key>
-				<real>0.73333334922790527</real>
+				<real>0.73255372047424316</real>
 				<key>Red Component</key>
-				<real>0.73333334922790527</real>
+				<real>0.73257553577423096</real>
 			</dict>
 			<key>Cursor Text Color</key>
 			<dict>
@@ -2399,7 +2411,7 @@
 	<key>SUHasLaunchedBefore</key>
 	<true/>
 	<key>SULastCheckTime</key>
-	<date>2017-03-26T05:36:04Z</date>
+	<date>2017-03-27T05:53:16Z</date>
 	<key>SavePasteHistory</key>
 	<false/>
 	<key>ShowBookmarkName</key>
