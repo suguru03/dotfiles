@@ -12,6 +12,8 @@
 	email = suguru.motegi@gmail.com
 [commit]
 	template = ~/.stCommitMsg
+[ghq]
+	root = ~/Documents/workspace
 [alias]
 	br = branch
 	ci = commit
