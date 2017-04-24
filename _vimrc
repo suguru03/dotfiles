@@ -50,7 +50,7 @@ Plug 'tpope/vim-surround'
 Plug 'scrooloose/nerdcommenter'
 
 "### Code Display ###
-Plug 'Yggdroot/indentLine'
+"Plug 'Yggdroot/indentLine'
 Plug 'easysid/mod8.vim'
 Plug 'joshdick/onedark.vim'
 
@@ -182,6 +182,7 @@ set smartindent
 set tabstop=4 " tabstop
 set softtabstop=2
 set shiftwidth=2 " タブを挿入するときの幅
+set expandtab
 
 "" 基本editorconfigに寄せる（vscodeとの互換のため）
 if has("autocmd")
@@ -194,7 +195,7 @@ if has("autocmd")
 "  au FileType coffee set ts=2 sw=2 expandtab
   au FileType javascript set ts=2 sw=2 expandtab
 "  au FileType yaml set ts=2 sw=2 expandtab
-"  au FileType go set ts=2 sw=2
+  au FileType go set ts=2 sw=2 noexpandtab
 "  au FileType terraform set ts=2 sw=2 expandtab
 "  au FileType swift set ts=4 sw=4 expandtab
 "  au FileType crystal set ts=2 sw=2 expandtab
@@ -209,6 +210,8 @@ endif
 " vim-javascript
 "let g:javascript_plugin_jsdoc = 1
 "set foldmethod=syntax
+set list
+set listchars=tab:>\ ,trail:_,nbsp:%,extends:>,precedes:<
 
 "---------------------------
 " editing
@@ -407,14 +410,14 @@ else
   set statusline+=%#warningmsg# "エラーメッセージの書式
   set statusline+=%{SyntasticStatuslineFlag()}
   set statusline+=%*
-  let g:syntastic_javascript_checkers = ['jshint', 'eslint']
+  "let g:syntastic_javascript_checkers = ['jshint', 'eslint']
+  let g:syntastic_javascript_checkers = ['eslint']
   let g:syntastic_mode_map = {
     \ 'mode': 'active',
-    \ 'active_filetypes': ['javascript'],
-    \ 'passive_filetypes': ['html', 'python', 'go'] }
-  let g:syntastic_javascript_checkers = ['eslint']
+    \ 'active_filetypes': ['javascript', 'go'],
+    \ 'passive_filetypes': ['html', 'python'] }
   let g:syntastic_python_checkers = ['pylint']
-  let g:syntastic_go_checkers = ['go', 'govet', 'errcheck']
+  let g:syntastic_go_checkers = ['go', 'govet', 'gofmt', 'golint']
 
   "エラー表示マークを変更
   let g:syntastic_enable_signs=1
@@ -489,7 +492,7 @@ nmap <C-p> <Plug>(yankround-prev)
 nmap <C-n> <Plug>(yankround-next)
 
 " indentLine
-set list lcs=tab:\¦\
+"set list lcs=tab:\¦\
 " let g:indentLine_conceallevel = 0
 
 "" python3 support for nvim

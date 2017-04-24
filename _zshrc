@@ -85,7 +85,7 @@ eval "$(anyenv init -)"
 # Go
 export GO_VERSION=1.8
 export GOROOT=$HOME/.anyenv/envs/goenv/versions/$GO_VERSION
-export GOPATH=$HOME/dev
+export GOPATH=$HOME/Documents/workspace/go
 export PATH=$HOME/.anyenv/envs/goenv/shims/bin:$PATH
 export PATH=$GOROOT/bin:$PATH
 export PATH=$GOPATH/bin:$PATH
@@ -138,4 +138,4 @@ function peco-src () {
   zle clear-screen
 }
 zle -N peco-src
-bindkey '^f' peco-src
+bindkey '^]' peco-src
