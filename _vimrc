@@ -160,7 +160,6 @@ nnoremap <silent> <Leader>t :<C-u>tabedit<CR>
 set showmatch
 set number " line number
 "ssofttabstopet linespace=4
-""set list " 不可視文字の表示
 set conceallevel=0
 let g:vim_json_syntax_conceal=0
 set hlsearch
@@ -172,6 +171,9 @@ set ttyfast
 
 " ESC 2回でハイライトを解除
 nnoremap <ESC><ESC> :nohlsearch<CR>
+
+set list
+set listchars=tab:>\ ,trail:_,nbsp:%,extends:>,precedes:<
 
 "---------------------------
 " indent
@@ -210,8 +212,6 @@ endif
 " vim-javascript
 "let g:javascript_plugin_jsdoc = 1
 "set foldmethod=syntax
-set list
-set listchars=tab:>\ ,trail:_,nbsp:%,extends:>,precedes:<
 
 "---------------------------
 " editing
@@ -250,6 +250,12 @@ endfunction
 "autocmd BufWritePre * call <SID>Trim()
 
 nnoremap <silent> <Leader>r :<C-u>e!<CR>
+
+vnoremap v ^$h
+
+vnoremap < <gv
+vnoremap > >gv
+
 "---------------------------
 " move
 "---------------------------
@@ -304,6 +310,8 @@ let g:EasyMotion_space_jump_first = 1
 nmap g/ <Plug>(easymotion-sn)
 xmap g/ <Plug>(easymotion-sn)
 omap g/ <Plug>(easymotion-tn)
+
+set scrolloff=10
 
 "---------------------------
 " completion
@@ -432,6 +440,9 @@ noremap ; :
 inoremap ; :
 inoremap : ;
 
+" escape insert mode
+inoremap jj <ESC>
+
 " remove space when file is saved
 autocmd BufWritePre * :%s/\s\+$//ge
 autocmd BufWritePre * :%s/　\+$//ge
@@ -517,12 +528,11 @@ let g:previm_open_cmd="open -a Google\\ Chrome"
 inoremap <C-c> console.log('ｷﾀ ━━━ヽ(´ω`)ﾉ ━━━!!');
 inoremap <C-\> console.log(require('util').inspect(result, false, null));
 
-
 " unite
 nnoremap <silent> <Leader>gd :<C-u>GoDef<CR>
 
 " go
-let g:go_fmt_autosave = 0
+let g:go_fmt_autosave = 1
 let g:go_fmt_command = "gofmt"
 "let g:go_fmt_command = "goimports"
 let g:go_highlight_functions = 1
