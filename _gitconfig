@@ -3,7 +3,7 @@
 	editor = vim
 [difftool "sourcetree"]
 	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
-	path =
+	path = 
 [mergetool "sourcetree"]
 	cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
 	trustExitCode = true
@@ -16,14 +16,20 @@
 	root = ~/Documents/workspace
 [alias]
 	br = branch
+	ca = commit --amend
+	can = commit --all --amend --no-edit
 	ci = commit
 	co = checkout
 	cp = cherry-pick
 	fa = fetch --all
-	fo = fetch origin
 	hard = reset --hard
-	po = push origin
+	ll = log --graph --decorate --oneline --abbrev-commit
 	pop = stash pop
-	pr = pull --rebase
+	pr = pull --rebase upstream
 	soft = reset --soft
 	st = status
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true

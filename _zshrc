@@ -76,7 +76,7 @@ export PATH=/usr/local/bin:$PATH
 
 # nvm
 source $(brew --prefix nvm)/nvm.sh
-nvm use --delete-prefix v6
+nvm use --delete-prefix v8
 
 # anyenv
 export PATH="$HOME/.anyenv/bin:$PATH"

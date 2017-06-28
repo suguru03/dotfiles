@@ -28,6 +28,7 @@ Plug 'jelera/vim-javascript-syntax'
 Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
 Plug 'othree/yajs.vim', { 'for': 'javascript' }
 Plug 'elzr/vim-json'
+Plug 'leafgarland/typescript-vim'
 " for rust
 Plug 'rust-lang/rust.vim', { 'for': 'rust' }
 Plug 'racer-rust/vim-racer', { 'for': 'rust' }
@@ -195,7 +196,9 @@ if has("autocmd")
 "  au FileType ruby set ts=2 sw=2 expandtab
 "  au FileType slim set ts=2 sw=2 expandtab
 "  au FileType coffee set ts=2 sw=2 expandtab
+  au FileType java set ts=2 sw=2 expandtab
   au FileType javascript set ts=2 sw=2 expandtab
+  au FileType typescript set ts=2 sw=2 expandtab
 "  au FileType yaml set ts=2 sw=2 expandtab
   au FileType go set ts=2 sw=2 noexpandtab
 "  au FileType terraform set ts=2 sw=2 expandtab
