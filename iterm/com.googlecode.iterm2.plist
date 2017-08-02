@@ -402,6 +402,8 @@
 	<integer>105</integer>
 	<key>HotkeyCode</key>
 	<integer>34</integer>
+	<key>HotkeyMigratedFromSingleToMulti</key>
+	<true/>
 	<key>HotkeyModifiers</key>
 	<integer>262401</integer>
 	<key>IRMemory</key>
@@ -471,19 +473,27 @@
 	<key>NSWindow Frame SessionsPreferences</key>
 	<string>269 139 606 456 0 0 1680 1027 </string>
 	<key>NSWindow Frame SharedPreferences</key>
-	<string>36 549 918 381 0 0 1680 1027 </string>
+	<string>36 435 796 473 0 0 1680 1027 </string>
 	<key>NSWindow Frame UKCrashReporter</key>
-	<string>127 443 592 584 0 0 1680 1027 </string>
+	<string>-1052 1523 592 584 -1207 1050 1920 1057 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
-	<string>713 1056 1914 1051 713 1050 1920 1057 </string>
+	<string>0 4 1680 1023 0 0 1680 1027 </string>
 	<key>NSWindow Frame iTerm Window 1</key>
-	<string>713 1060 1676 1017 713 1050 1920 1057 </string>
+	<string>0 4 1680 1023 0 0 1680 1027 </string>
 	<key>NSWindow Frame iTerm Window 2</key>
-	<string>0 10 1676 1017 0 0 1680 1027 </string>
+	<string>713 1050 1920 1057 713 1050 1920 1057 </string>
 	<key>NSWindow Frame iTerm Window 3</key>
-	<string>0 10 1676 1017 0 0 1680 1027 </string>
+	<string>0 554 570 473 0 0 1680 1027 </string>
 	<key>NSWindow Frame iTerm Window 4</key>
-	<string>0 10 1676 1017 0 0 1680 1027 </string>
+	<string>0 554 570 473 0 0 1680 1027 </string>
+	<key>NSWindow Frame iTerm Window 5</key>
+	<string>275 32 570 473 0 0 1680 1027 </string>
+	<key>NSWindow Frame iTerm Window 6</key>
+	<string>296 9 570 473 0 0 1680 1027 </string>
+	<key>NSWindow Frame iTerm Window 7</key>
+	<string>317 554 570 473 0 0 1680 1027 </string>
+	<key>NSWindow Frame iTerm Window 8</key>
+	<string>338 554 570 473 0 0 1680 1027 </string>
 	<key>New Bookmarks</key>
 	<array>
 		<dict>
@@ -2411,7 +2421,7 @@
 	<key>SUHasLaunchedBefore</key>
 	<true/>
 	<key>SULastCheckTime</key>
-	<date>2017-03-27T05:53:16Z</date>
+	<date>2017-07-04T05:39:35Z</date>
 	<key>SavePasteHistory</key>
 	<false/>
 	<key>ShowBookmarkName</key>
@@ -2441,7 +2451,7 @@
 	<key>TripleClickSelectsFullWrappedLines</key>
 	<false/>
 	<key>UKCrashReporterLastCrashReportDate</key>
-	<real>1475638912</real>
+	<real>1495824128</real>
 	<key>URLHandlersByGuid</key>
 	<dict/>
 	<key>UseBorder</key>
@@ -2462,10 +2472,12 @@
 	<string>/-+\~_.</string>
 	<key>findIgnoreCase_iTerm</key>
 	<true/>
+	<key>findMode_iTerm</key>
+	<integer>0</integer>
 	<key>findRegex_iTerm</key>
 	<false/>
 	<key>iTerm Version</key>
-	<string>3.0.15</string>
+	<string>3.1.beta.5</string>
 	<key>kCPKSelectionViewPreferredModeKey</key>
 	<integer>1</integer>
 	<key>kCPKSelectionViewShowHSBTextFieldsKey</key>
