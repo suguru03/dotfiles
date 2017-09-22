@@ -32,6 +32,7 @@ brew install coreutils
 brew install python
 brew linkapps python
 brew install cmake
+brew install ctags
 
 # docker
 brew install docker-machine-driver-xhyve

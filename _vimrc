@@ -41,6 +41,8 @@ Plug 'evanmiller/nginx-vim-syntax', { 'for': 'nginx' }
 Plug 'uarun/vim-protobuf', { 'for': 'protobuf' }
 " for haskell
 Plug 'neovimhaskell/haskell-vim', { 'for': 'haskell' }
+" for ruby
+Plug 'vim-ruby/vim-ruby', { 'for': 'ruby' }
 
 "### Completion ###
 Plug 'Valloric/YouCompleteMe'
@@ -62,6 +64,7 @@ Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
 Plug 'tyru/open-browser.vim'
 Plug 'editorconfig/editorconfig-vim'
+Plug 'nfvs/vim-perforce'
 
 "### Interface ###
 Plug 'mhinz/vim-startify'
@@ -423,12 +426,14 @@ else
   set statusline+=%*
   "let g:syntastic_javascript_checkers = ['jshint', 'eslint']
   let g:syntastic_javascript_checkers = ['eslint']
+  let g:syntastic_typescript_checkers = ['tslint']
   let g:syntastic_mode_map = {
     \ 'mode': 'active',
-    \ 'active_filetypes': ['javascript', 'go'],
+    \ 'active_filetypes': ['javascript', 'typescript', 'go'],
     \ 'passive_filetypes': ['html', 'python'] }
   let g:syntastic_python_checkers = ['pylint']
   let g:syntastic_go_checkers = ['go', 'govet', 'gofmt', 'golint']
+  let g:syntastic_aggregate_errors = 1
 
   "エラー表示マークを変更
   let g:syntastic_enable_signs=1
@@ -459,6 +464,11 @@ vmap <C-C> <Plug>NERDCommenterToggle
 " NERD Tree
 map <silent> <C-e> :NERDTreeToggle<CR>
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
+
+" Tagbar
+nnoremap <silent> ,t :TagbarToggle<CR>
+nnoremap <silent>  <C-j> <C-]><CR>
+nnoremap <silent>  <C-b> <C-t><CR>
 
 " choosewin
 nmap  -  <Plug>(choosewin)
