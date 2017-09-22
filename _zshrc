@@ -78,10 +78,6 @@ export PATH=/usr/local/bin:$PATH
 source $(brew --prefix nvm)/nvm.sh
 nvm use --delete-prefix v8
 
-# anyenv
-export PATH="$HOME/.anyenv/bin:$PATH"
-eval "$(anyenv init -)"
-
 # Go
 export GO_VERSION=1.8
 export GOROOT=$HOME/.anyenv/envs/goenv/versions/$GO_VERSION
@@ -139,3 +135,14 @@ function peco-src () {
 }
 zle -N peco-src
 bindkey '^]' peco-src
+
+export PATH="$HOME/.rbenv/bin:$PATH"
+if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+# perforce
+export PATH="$HOME/Perforce/bin:$PATH"
+if [ -f $HOME/Perforce/secret.sh ]; then
+  source $HOME/Perforce/secret.sh
+  echo "p4: $P4PORT"
+fi
