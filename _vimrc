@@ -83,8 +83,9 @@ Plug 'thinca/vim-quickrun'
 Plug 'LeafCage/yankround.vim'
 
 "### Other ###
-Plug 'yuroyoro/smooth_scroll.vim'
 Plug 'majutsushi/tagbar'
+Plug 'xolox/vim-misc'
+Plug 'yuroyoro/smooth_scroll.vim'
 Plug 'easymotion/vim-easymotion'
 Plug 'vim-scripts/sudo.vim'
 Plug 'kannokanno/previm'
@@ -201,7 +202,7 @@ if has("autocmd")
 "  au FileType coffee set ts=2 sw=2 expandtab
   au FileType java set ts=2 sw=2 expandtab
   au FileType javascript set ts=2 sw=2 expandtab
-  au FileType typescript set ts=2 sw=2 expandtab
+  au FileType typescript set ts=4 sw=4 expandtab
 "  au FileType yaml set ts=2 sw=2 expandtab
   au FileType go set ts=2 sw=2 noexpandtab
 "  au FileType terraform set ts=2 sw=2 expandtab
@@ -466,9 +467,10 @@ map <silent> <C-e> :NERDTreeToggle<CR>
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
 
 " Tagbar
+" ctags -R .
 nnoremap <silent> ,t :TagbarToggle<CR>
-nnoremap <silent>  <C-j> <C-]><CR>
 nnoremap <silent>  <C-b> <C-t><CR>
+nnoremap <silent> <C-t> <C-]><CR>
 
 " choosewin
 nmap  -  <Plug>(choosewin)
