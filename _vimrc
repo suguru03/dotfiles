@@ -467,10 +467,11 @@ map <silent> <C-e> :NERDTreeToggle<CR>
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
 
 " Tagbar
-" ctags -R .
+" ctags --languages=Ruby -f ~/ruby.tags <PWD>
 nnoremap <silent> ,t :TagbarToggle<CR>
-nnoremap <silent>  <C-b> <C-t><CR>
+nnoremap <silent>  <C-y> <C-t><CR>
 nnoremap <silent> <C-t> <C-]><CR>
+au BufNewFile,BufRead *.rb set tags+=$HOME/ruby.tags
 
 " choosewin
 nmap  -  <Plug>(choosewin)
