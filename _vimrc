@@ -28,7 +28,8 @@ Plug 'jelera/vim-javascript-syntax'
 Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
 Plug 'othree/yajs.vim', { 'for': 'javascript' }
 Plug 'elzr/vim-json'
-Plug 'leafgarland/typescript-vim'
+Plug 'leafgarland/typescript-vim', { 'for': 'typescript' }
+Plug 'Quramy/tsuquyomi', { 'for': 'typescript' }
 " for rust
 Plug 'rust-lang/rust.vim', { 'for': 'rust' }
 Plug 'racer-rust/vim-racer', { 'for': 'rust' }
@@ -472,6 +473,12 @@ nnoremap <silent> ,t :TagbarToggle<CR>
 nnoremap <silent>  <C-y> <C-t><CR>
 nnoremap <silent> <C-t> <C-]><CR>
 au BufNewFile,BufRead *.rb set tags+=$HOME/ruby.tags
+
+" Tsuquyomi
+let g:tsuquyomi_disable_default_mappings = 1
+let g:tsuquyomi_disable_quickfix = 1
+autocmd FileType typescript map <silent> <C-t> <Plug>(TsuquyomiDefinition)
+autocmd FileType typescript map <silent> <C-y> <Plug>(TsuquyomiGoBack)
 
 " choosewin
 nmap  -  <Plug>(choosewin)
