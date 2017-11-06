@@ -52,6 +52,7 @@ Plug 'honza/vim-snippets'
 Plug 'Raimondi/delimitMate'
 Plug 'tpope/vim-surround'
 Plug 'scrooloose/nerdcommenter'
+Plug 'prettier/vim-prettier'
 
 "### Code Display ###
 "Plug 'Yggdroot/indentLine'
@@ -87,6 +88,7 @@ Plug 'LeafCage/yankround.vim'
 Plug 'majutsushi/tagbar'
 Plug 'xolox/vim-misc'
 Plug 'yuroyoro/smooth_scroll.vim'
+"Plug 'xolox/vim-easytags'
 Plug 'easymotion/vim-easymotion'
 Plug 'vim-scripts/sudo.vim'
 Plug 'kannokanno/previm'
@@ -381,7 +383,14 @@ let g:UltiSnipsJumpBackwardTrigger="<C-j>"
 
 " If you want :UltiSnipsEdit to split your window.
 let g:UltiSnipsEditSplit="vertical"
-"++++++++++++++++++++++++++++++++++++++++++++++++++
+
+" pretter
+let g:prettier#autoformat = 0
+" I need a good macbook...
+"autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql PrettierAsync
+let g:prettier#config#bracket_spacing = 1
+
+""++++++++++++++++++++++++++++++++++++++++++++++++++
 
 
 ""++++++++++++++++++++++++++++++++++++++++++++++++++
