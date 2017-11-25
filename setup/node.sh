@@ -3,17 +3,16 @@
 nvm install v6
 
 npm install -g \
-  eslint-config-airbnb \
-  eslint-plugin-import \
-  eslint-plugin-react \
-  eslint-plugin-jsx-a11y \
   eslint \
-  babel-eslint \
   jshint \
+  babel-eslint \
+  eslint-plugin-react \
+  eslint-plugin-react-native \
+  eslint-plugin-prettier \
+  react-native-cli \
   gulp \
   bower \
   mocha \
-  react-native-cli \
   pm2 \
   tern \
 
