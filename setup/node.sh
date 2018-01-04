@@ -1,7 +1,5 @@
 #! /bin/sh
 
-nvm install v6
-
 npm install -g \
   eslint \
   jshint \
@@ -15,6 +13,5 @@ npm install -g \
   mocha \
   pm2 \
   tern \
-
-
-
+  tslint \
+  typescript \
