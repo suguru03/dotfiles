@@ -106,14 +106,14 @@ eval "$(rbenv init -)"
 export PATH=/usr/local/heroku/bin:$PATH
 
 # The next line updates PATH for the Google Cloud SDK.
-source '/Users/suguru/google-cloud-sdk/path.zsh.inc'
-
-# The next line enables shell command completion for gcloud.
-source '/Users/suguru/google-cloud-sdk/completion.zsh.inc'
+# source '/Users/suguru/google-cloud-sdk/path.zsh.inc'
+#
+# # The next line enables shell command completion for gcloud.
+# source '/Users/suguru/google-cloud-sdk/completion.zsh.inc'
 
 # power-shell
 function powerline_precmd() {
-    PS1="$(~/powerline-shell.py --cwd-max-depth 1 $? --shell zsh 2> /dev/null)"
+    PS1="$(powerline-shell --shell zsh $?)"
 }
 
 function install_powerline_precmd() {
@@ -149,3 +149,4 @@ if [ -f $HOME/Perforce/secret.sh ]; then
   source $HOME/Perforce/secret.sh
   echo "p4: $P4PORT"
 fi
+export P4DIFF=vimdiff
