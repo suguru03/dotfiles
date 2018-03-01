@@ -28,6 +28,7 @@ Plug 'jelera/vim-javascript-syntax'
 Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
 Plug 'othree/yajs.vim', { 'for': 'javascript' }
 Plug 'elzr/vim-json'
+Plug 'GutenYe/json5.vim', { 'for': 'json5' }
 Plug 'leafgarland/typescript-vim', { 'for': 'typescript' }
 Plug 'Quramy/tsuquyomi', { 'for': 'typescript' }
 " for rust
@@ -37,13 +38,14 @@ Plug 'racer-rust/vim-racer', { 'for': 'rust' }
 Plug 'derekwyatt/vim-scala', { 'for': 'scala' }
 " for writing configuration
 Plug 'ekalinin/dockerfile.vim', { 'for': 'Dockerfile' }
-Plug 'evanmiller/nginx-vim-syntax', { 'for': 'nginx' }
 " for Protocol Buffers
 Plug 'uarun/vim-protobuf', { 'for': 'protobuf' }
 " for haskell
 Plug 'neovimhaskell/haskell-vim', { 'for': 'haskell' }
 " for ruby
 Plug 'vim-ruby/vim-ruby', { 'for': 'ruby' }
+" for C#
+Plug 'OmniSharp/omnisharp-vim', { 'for': 'cs' }
 
 "### Completion ###
 Plug 'Valloric/YouCompleteMe'
@@ -479,8 +481,10 @@ au BufNewFile,BufRead *.rb set tags+=$HOME/ruby.tags
 " Tsuquyomi
 let g:tsuquyomi_disable_default_mappings = 1
 let g:tsuquyomi_disable_quickfix = 1
+let g:tsuquyomi_shortest_import_path = 1
 autocmd FileType typescript map <silent> <C-t> <Plug>(TsuquyomiDefinition)
 autocmd FileType typescript map <silent> <C-y> <Plug>(TsuquyomiGoBack)
+autocmd FileType typescript map <silent> <S-i> <Plug>(TsuquyomiImport)
 
 " choosewin
 nmap  -  <Plug>(choosewin)
@@ -550,7 +554,7 @@ let g:previm_open_cmd="open -a Google\\ Chrome"
 " swif
 "
 " javascript
-au BufNewFile,BufRead *.js,*.ts inoremap <C-c> console.log('ｷﾀ ━━━ヽ(´ω`)ﾉ ━━━!!');
+au BufNewFile,BufRead *.js,*.ts,*.jsx,*tsx inoremap <C-c> console.log('ｷﾀ ━━━ヽ(´ω`)ﾉ ━━━!!');
 au BufNewFile,BufRead *.js,*.ts inoremap <C-\> console.log(require('util').inspect(result, false, null));
 au BufNewFile,BufRead *.js,*.ts inoremap <C-a> assert
 
