@@ -21,7 +21,7 @@
 	ci = commit
 	co = checkout
 	cp = cherry-pick
-	fa = fetch --all
+	fe = -c diff.mnemonicprefix=false -c core.quotepath=false fetch --prune origin
 	hard = reset --hard
 	ll = log --graph --decorate --oneline --abbrev-commit
 	pop = stash pop
