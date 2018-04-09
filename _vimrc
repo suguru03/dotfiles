@@ -12,6 +12,8 @@ call plug#begin('~/.vim/plugged')
 
 "### Language ###
 Plug 'ingtk/nerdtree', { 'on': ['NERDTreeToggle'] }
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
 
 if has('nvim')
   Plug 'benekastah/neomake'
@@ -24,7 +26,7 @@ Plug 'fatih/vim-go', { 'for': 'go' }
 Plug 'vim-jp/vim-go-extra', { 'for': 'go' }
 Plug 'buoto/gotests-vim', { 'for': 'go', 'do': 'go get -u github.com/cweill/gotests' }
 " for js, json
-Plug 'jelera/vim-javascript-syntax'
+Plug 'jelera/vim-javascript-syntax', { 'for': 'javascript' }
 Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
 Plug 'othree/yajs.vim', { 'for': 'javascript' }
 Plug 'elzr/vim-json'
@@ -484,7 +486,11 @@ let g:tsuquyomi_disable_quickfix = 1
 let g:tsuquyomi_shortest_import_path = 1
 autocmd FileType typescript map <silent> <C-t> <Plug>(TsuquyomiDefinition)
 autocmd FileType typescript map <silent> <C-y> <Plug>(TsuquyomiGoBack)
-autocmd FileType typescript map <silent> <S-i> <Plug>(TsuquyomiImport)
+autocmd FileType typescript map <silent> <C-m> <Plug>(TsuquyomiImport)
+autocmd FileType typescript map <silent> <C-o> <Plug>(TsuquyomiReferences)
+
+" FZF
+map <silent> <C-g> :GFiles<CR>
 
 " choosewin
 nmap  -  <Plug>(choosewin)
