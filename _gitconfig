@@ -24,6 +24,7 @@
 	fe = -c diff.mnemonicprefix=false -c core.quotepath=false fetch --prune origin
 	hard = reset --hard
 	ll = log --graph --decorate --oneline --abbrev-commit
+	p = push origin master
 	pop = stash pop
 	pr = pull --rebase upstream
 	soft = reset --soft
