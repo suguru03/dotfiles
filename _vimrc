@@ -84,7 +84,7 @@ Plug 'wincent/command-t', { 'do': 'cd ruby/command-t && ruby extconf.rb && make'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'tpope/vim-repeat'
 Plug 'LeafCage/yankround.vim'
-Plug 'Shougo/vimproc.vim', { 'do': 'make' }
+" Plug 'Shougo/vimproc.vim', { 'do': 'make' }
 Plug 'thinca/vim-quickrun'
 Plug 'LeafCage/yankround.vim'
 
@@ -169,6 +169,7 @@ nnoremap <silent> <Leader>t :<C-u>tabedit<CR>
 " appearance
 "---------------------------
 
+set encoding=utf-8
 set showmatch
 set number " line number
 "ssofttabstopet linespace=4
@@ -209,7 +210,7 @@ if has("autocmd")
 "  au FileType coffee set ts=2 sw=2 expandtab
   au FileType java set ts=2 sw=2 expandtab
   au FileType javascript set ts=2 sw=2 expandtab
-  au FileType typescript set ts=4 sw=4 expandtab
+  au FileType typescript set ts=2 sw=2 expandtab
 "  au FileType yaml set ts=2 sw=2 expandtab
   au FileType go set ts=2 sw=2 noexpandtab
 "  au FileType terraform set ts=2 sw=2 expandtab
@@ -433,7 +434,7 @@ else
   let g:syntastic_always_populate_loc_list = 1
   let g:syntastic_check_on_wq = 0
   let g:syntastic_check_on_open=0 "ファイルを開いたときはチェックしない
-  let g:syntastic_check_on_save=1 "保存時にはチェック
+  let g:syntastic_check_on_save=0 "保存時にはチェック
   let g:syntastic_auto_loc_list=1 "エラーがあったら自動でロケーションリストを開く
   let g:syntastic_loc_list_height=4 "エラー表示ウィンドウの高さ
   set statusline+=%#warningmsg# "エラーメッセージの書式
