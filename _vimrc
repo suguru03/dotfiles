@@ -390,9 +390,9 @@ let g:UltiSnipsJumpBackwardTrigger="<C-j>"
 let g:UltiSnipsEditSplit="vertical"
 
 " pretter
-let g:prettier#autoformat = 0
+let g:prettier#autoformat = 1
 " I need a good macbook...
-"autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql PrettierAsync
+autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql PrettierAsync
 let g:prettier#config#bracket_spacing = 1
 
 ""++++++++++++++++++++++++++++++++++++++++++++++++++
