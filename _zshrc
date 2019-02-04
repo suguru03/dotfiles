@@ -154,3 +154,6 @@ fi
 export P4DIFF=vimdiff
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# direnv
+eval "$(direnv hook zsh)"
