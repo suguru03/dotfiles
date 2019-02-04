@@ -3,7 +3,7 @@
 	editor = vim
 [difftool "sourcetree"]
 	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
-	path = 
+	path =
 [mergetool "sourcetree"]
 	cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
 	trustExitCode = true
@@ -24,7 +24,7 @@
 	fe = -c diff.mnemonicprefix=false -c core.quotepath=false fetch --prune origin
 	hard = reset --hard
 	ll = log --graph --decorate --oneline --abbrev-commit
-	p = push origin master
+	p = push origin HEAD
 	pop = stash pop
 	pr = pull --rebase upstream
 	soft = reset --soft
