@@ -157,3 +157,6 @@ export P4DIFF=vimdiff
 
 # direnv
 eval "$(direnv hook zsh)"
+
+# alias
+alias gti=git
