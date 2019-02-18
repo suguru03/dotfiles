@@ -1,0 +1,4 @@
+set clipboard=unnamed
+inoremap <C-c> console.log('ｷﾀ ━━━ヽ(´ω`)ﾉ ━━━!!');
+inoremap <C-\> console.log(require('util').inspect(result, false, null));
+inoremap <C-a> assert
