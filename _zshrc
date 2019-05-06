@@ -78,7 +78,7 @@ export PATH=/usr/local/bin:$PATH
 
 # nvm
 source $(brew --prefix nvm)/nvm.sh
-nvm use --delete-prefix v11
+nvm use --delete-prefix v12
 
 # anyenv
 export PATH="$HOME/.anyenv/bin:$PATH"
@@ -114,22 +114,22 @@ export PATH=/usr/local/heroku/bin:$PATH
 # source '/Users/suguru/google-cloud-sdk/completion.zsh.inc'
 
 # power-shell
-# function powerline_precmd() {
-#     PS1="$(powerline-shell --shell zsh $?)"
-# }
-#
-# function install_powerline_precmd() {
-#   for s in "${precmd_functions[@]}"; do
-#     if [ "$s" = "powerline_precmd" ]; then
-#       return
-#     fi
-#   done
-#   precmd_functions+=(powerline_precmd)
-# }
-#
-# if [ "$TERM" != "linux" ]; then
-#     install_powerline_precmd
-# fi
+function powerline_precmd() {
+    PS1="$(powerline-shell --shell zsh $?)"
+}
+
+function install_powerline_precmd() {
+  for s in "${precmd_functions[@]}"; do
+    if [ "$s" = "powerline_precmd" ]; then
+      return
+    fi
+  done
+  precmd_functions+=(powerline_precmd)
+}
+
+if [ "$TERM" != "linux" ]; then
+    install_powerline_precmd
+fi
 
 function peco-src () {
   local selected_dir=$(ghq list -p | peco --query "$LBUFFER")
