@@ -561,7 +561,8 @@ let g:previm_open_cmd="open -a Google\\ Chrome"
 " swif
 "
 " javascript
-au BufNewFile,BufRead *.js,*.ts,*.jsx,*tsx inoremap <C-c> console.log('ｷﾀ ━━━ヽ(´ω`)ﾉ ━━━!!');
+au BufNewFile,BufRead *.js,*.ts,*.jsx,*tsx inoremap <C-c> console.log('_(:3」∠)_______________________________');
+
 au BufNewFile,BufRead *.js,*.ts inoremap <C-\> console.log(require('util').inspect(result, false, null));
 au BufNewFile,BufRead *.js,*.ts inoremap <C-a> assert
 
