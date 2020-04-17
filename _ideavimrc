@@ -1,5 +1,5 @@
 set clipboard=unnamed
-inoremap <C-c> console.log('_(:3」∠)_______________________________');
+inoremap <C-c> console.log('_(:3」∠)_________________');
 inoremap <C-j> console.log(JSON.stringify(result, null, 2));
 inoremap <C-\> console.log(require('util').inspect(result, false, null));
 inoremap <C-a> assert
