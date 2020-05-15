@@ -80,9 +80,12 @@ export PATH=$HOME/bin:$PATH
 # nvm
 source $(brew --prefix nvm)/nvm.sh
 nvm use --delete-prefix v12
+# plugins+=(zsh-nvm)
 
 # deno
-export PATH=$PATH:$HOME/.deno/bin
+export DENO_INSTALL=$HOME/.deno
+export PATH=$DENO_INSTALL/bin:$PATH
+source $(brew --prefix asdf)/asdf.sh
 
 # anyenv
 # export PATH="$HOME/.anyenv/bin:$PATH"
