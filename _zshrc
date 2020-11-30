@@ -79,7 +79,7 @@ export PATH=$HOME/bin:$PATH
 
 # nvm
 source $(brew --prefix nvm)/nvm.sh
-nvm use --delete-prefix v12
+nvm use --delete-prefix v14
 # plugins+=(zsh-nvm)
 
 # deno
@@ -92,16 +92,16 @@ source $(brew --prefix asdf)/asdf.sh
 # eval "$(anyenv init -)"
 
 # gvm
-source $HOME/.gvm/scripts/gvm
-export GO_VERSION=go1.13.4
-gvm use $GO_VERSION
+# source $HOME/.gvm/scripts/gvm
+# export GO_VERSION=go1.13.4
+# gvm use $GO_VERSION
 
 # Go
-export GOROOT=$HOME/.gvm/gos/$GO_VERSION
-export GOPATH=$HOME/Documents/workspace/go
-# export PATH=$HOME/.anyenv/envs/goenv/shims/bin:$PATH
-export PATH=$GOROOT/bin:$PATH
-export PATH=$GOPATH/bin:$PATH
+# export GOROOT=$HOME/.gvm/gos/$GO_VERSION
+# export GOPATH=$HOME/Documents/workspace/go
+# # export PATH=$HOME/.anyenv/envs/goenv/shims/bin:$PATH
+# export PATH=$GOROOT/bin:$PATH
+# export PATH=$GOPATH/bin:$PATH
 # echo Now using golang v$GO_VERSION
 
 # Add environment variable COCOS_CONSOLE_ROOT for cocos2d-x
@@ -171,3 +171,6 @@ eval "$(direnv hook zsh)"
 
 # alias
 alias gti=git
+
+# Add Visual Studio Code (code)
+export PATH=$PATH:/Applications/Visual\ Studio\ Code.app/Contents/Resources/app/bin
