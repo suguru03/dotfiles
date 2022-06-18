@@ -79,12 +79,12 @@ export PATH=$HOME/bin:$PATH
 
 # nvm
 source $(brew --prefix nvm)/nvm.sh
-nvm use --delete-prefix v14
+nvm use --delete-prefix v16
 # plugins+=(zsh-nvm)
 
 # deno
-export DENO_INSTALL=$HOME/.deno
-export PATH=$DENO_INSTALL/bin:$PATH
+# export DENO_INSTALL=$HOME/.deno
+# export PATH=$DENO_INSTALL/bin:$PATH
 source $(brew --prefix asdf)/asdf.sh
 
 # anyenv
@@ -92,17 +92,17 @@ source $(brew --prefix asdf)/asdf.sh
 # eval "$(anyenv init -)"
 
 # gvm
-# source $HOME/.gvm/scripts/gvm
-# export GO_VERSION=go1.13.4
-# gvm use $GO_VERSION
+source $HOME/.gvm/scripts/gvm
+export GO_VERSION=go1.17.5
+gvm use $GO_VERSION
 
 # Go
-# export GOROOT=$HOME/.gvm/gos/$GO_VERSION
-# export GOPATH=$HOME/Documents/workspace/go
-# # export PATH=$HOME/.anyenv/envs/goenv/shims/bin:$PATH
-# export PATH=$GOROOT/bin:$PATH
-# export PATH=$GOPATH/bin:$PATH
-# echo Now using golang v$GO_VERSION
+export GOROOT=$HOME/.gvm/gos/$GO_VERSION
+export GOPATH=$HOME/Documents/workspace/go
+# # # export PATH=$HOME/.anyenv/envs/goenv/shims/bin:$PATH
+export PATH=$GOROOT/bin:$PATH
+export PATH=$GOPATH/bin:$PATH
+# # echo Now using golang v$GO_VERSION
 
 # Add environment variable COCOS_CONSOLE_ROOT for cocos2d-x
 export COCOS_CONSOLE_ROOT=$HOME/Documents/cocos2d-x-3.2/tools/cocos2d-console/bin
@@ -125,6 +125,8 @@ export PATH=/usr/local/heroku/bin:$PATH
 # source '/Users/suguru/google-cloud-sdk/completion.zsh.inc'
 
 # power-shell
+export PATH=/usr/local/opt/python@3.9/Frameworks/Python.framework/Versions/3.9/bin:$PATH
+
 function powerline_precmd() {
     PS1="$(powerline-shell --shell zsh $?)"
 }
@@ -174,3 +176,5 @@ alias gti=git
 
 # Add Visual Studio Code (code)
 export PATH=$PATH:/Applications/Visual\ Studio\ Code.app/Contents/Resources/app/bin
+
+export PATH=$PATH:~/Documents/workspace/flutter/bin
