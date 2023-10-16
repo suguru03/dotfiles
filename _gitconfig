@@ -12,6 +12,7 @@
 	email = suguru.motegi@gmail.com
 [commit]
 	template = ~/.stCommitMsg
+	cleanup = scissors
 [ghq]
 	root = ~/Documents/workspace
 [alias]
