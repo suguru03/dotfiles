@@ -1,22 +1,17 @@
 #! /bin/sh
-/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+
+export PATH=/opt/homebrew/bin:$PATH
 
 brew update
 brew upgrade
 
-brew tap homebrew/versions || true
-brew tap homebrew/binary || true
-
-brew install subversion
-
 brew install vim
 
-brew install ag
 brew install git
 brew install git-lfs
 brew install jq
 brew install nvm
-brew install rbenv
 brew install tmux
 brew install zsh
 brew install wget
