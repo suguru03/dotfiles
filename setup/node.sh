@@ -1,8 +1,8 @@
 #! /bin/sh
 
-npm install -g \
-  eslint \
-  prettier \
-  tern \
-  tslint \
-  typescript \
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+
+nvm install v22
+npm install -g yarn
+
