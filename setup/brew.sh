@@ -13,6 +13,7 @@ brew install vim
 
 brew install ag
 brew install git
+brew install git-lfs
 brew install jq
 brew install nvm
 brew install rbenv
@@ -22,6 +23,7 @@ brew install wget
 brew install mysql
 brew install redis
 brew install coreutils
+brew install direnv
 
 # zsh
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"

@@ -11,7 +11,7 @@ set rtp+=$GOROOT/misc/vim
 call plug#begin('~/.vim/plugged')
 
 "### Language ###
-Plug 'ingtk/nerdtree', { 'on': ['NERDTreeToggle'] }
+Plug 'preservim/nerdtree', { 'on': ['NERDTreeToggle'] }
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 
